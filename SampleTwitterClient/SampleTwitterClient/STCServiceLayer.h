@@ -14,7 +14,7 @@
 
 typedef void (^WebServiceLoginResponseBlock) (BOOL success, NSError * error);
 
-@interface MockWebService : NSObject
+@interface STCServiceLayer : NSObject
 
 + (void) loginWithUsername:(NSString*)username password:(NSString*)password responseBlock:(WebServiceLoginResponseBlock)responseBlock;
 

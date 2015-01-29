@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "MockWebService.h"
+#import "STCServiceLayer.h"
+#import "STCGlobals.h"
+
 
 @interface SampleTwitterClientTests : XCTestCase
 
@@ -29,13 +31,13 @@
 - (void)testLoggingInFail {
     XCTestExpectation * expectation = [self expectationWithDescription:@"Testing login fail"];
     
-    [MockWebService loginWithUsername:@"jason" password:@"wrong" responseBlock:^(BOOL success, NSError *error) {
+    [STCServiceLayer loginWithUsername:@"jason" password:@"wrong" responseBlock:^(BOOL success, NSError *error) {
         if (nil == error) {
             XCTFail(@"The login should fail for wrong credentials");
         }
         else {
             NSInteger statusCode = error.code;
-            XCTAssertEqual(statusCode, 1001);
+            XCTAssertEqual(statusCode, kSampleTwitterClientErrorCodeLoginError);
             [expectation fulfill];
         }
     }];
@@ -50,7 +52,7 @@
 - (void)testLoggingInPass {
     XCTestExpectation * expectation = [self expectationWithDescription:@"Testing login pass"];
     
-    [MockWebService loginWithUsername:@"tester" password:@"abc123" responseBlock:^(BOOL success, NSError *error) {
+    [STCServiceLayer loginWithUsername:@"tester" password:@"abc123" responseBlock:^(BOOL success, NSError *error) {
         if (nil != error) {
             XCTFail(@"The login should pass for valid credentials");
         }

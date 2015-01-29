@@ -7,9 +7,12 @@
 //
 
 
-#import "MockWebService.h"
+#import "STCServiceLayer.h"
+#import "STCGlobals.h"
 
-@implementation MockWebService
+
+
+@implementation STCServiceLayer
 
 /**
  used to simulate delay in web service
@@ -42,7 +45,7 @@
         NSString * errorString = @"The username / password combination is invalid";
         NSDictionary * userInfo = @{ NSLocalizedDescriptionKey : errorString};
         err = [NSError errorWithDomain:@"ca.jasoncross.login"
-                                  code:1001
+                                  code:kSampleTwitterClientErrorCodeLoginError
                               userInfo:userInfo];
     }
     
