@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "MockWebService.h"
 
 @interface SampleTwitterClientTests : XCTestCase
 
@@ -25,15 +26,44 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+- (void)testLoggingInFail {
+    XCTestExpectation * expectation = [self expectationWithDescription:@"Testing login fail"];
+    
+    [MockWebService loginWithUsername:@"jason" password:@"wrong" responseBlock:^(BOOL success, NSError *error) {
+        if (nil == error) {
+            XCTFail(@"The login should fail for wrong credentials");
+        }
+        else {
+            NSInteger statusCode = error.code;
+            XCTAssertEqual(statusCode, 1001);
+            [expectation fulfill];
+        }
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (nil != error) {
+            XCTFail(@"Login timed out");
+        }
+    }];
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testLoggingInPass {
+    XCTestExpectation * expectation = [self expectationWithDescription:@"Testing login pass"];
+    
+    [MockWebService loginWithUsername:@"tester" password:@"abc123" responseBlock:^(BOOL success, NSError *error) {
+        if (nil != error) {
+            XCTFail(@"The login should pass for valid credentials");
+        }
+        else {
+            XCTAssertTrue(success);
+            [expectation fulfill];
+        }
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (nil != error) {
+            XCTFail(@"Login timed out");
+        }
     }];
 }
 
