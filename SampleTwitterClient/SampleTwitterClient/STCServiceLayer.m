@@ -95,21 +95,26 @@
         firstTweet.text = @"how exciting, my very first tweet!";
         firstTweet.id_str = @"abc123myfirsttweet";
         firstTweet.created_at = [NSDate date];
+        firstTweet.favourites_count = @4;
         
-        [context insertObject:firstTweet];
         [resultsArray addObject:firstTweet];
         
         Tweet * secondTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
         secondTweet.text = @"it's still kinda fun";
         secondTweet.id_str = @"abcxyzmysecondtweet";
         secondTweet.created_at = [NSDate date];
+        secondTweet.favourites_count = @13;
         
-        [context insertObject:secondTweet];
         [resultsArray addObject:secondTweet];
         
         [[STCDataManager sharedManager] saveContext];
     }
     else {
+        // fake that the favorite count has been increased by others
+        for (Tweet * tweet in previousTweets) {
+            tweet.favourites_count = @([tweet.favourites_count integerValue] + 1);
+        }
+        
         // what is the date of the latest tweet?
         
         static NSDateFormatter * dateFormatter = nil;
@@ -129,6 +134,7 @@
             firstTweet.text = [NSString stringWithFormat:@"One more tweet sent at: %@", dateString];
             firstTweet.id_str = dateString;
             
+            
             [resultsArray addObject:firstTweet];
             
             Tweet * secondTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
@@ -136,6 +142,7 @@
             dateString = [dateFormatter stringFromDate:secondTweet.created_at];
             secondTweet.text = [NSString stringWithFormat:@"And another tweet sent at: %@", dateString];
             secondTweet.id_str = dateString;
+            
             
             [resultsArray addObject:secondTweet];
             
@@ -145,6 +152,56 @@
     
     NSArray * value = [NSArray arrayWithArray:resultsArray];
     responseBlock(value, err);
+}
+
++ (void) postTweetText:(NSString*)tweetText responseBlock:(WebServiceLoginResponseBlock)responseBlock; {
+    BOOL result = NO;
+    NSError * err = nil;
+    
+    if (tweetText.length > 1 && tweetText.length < 138) {
+        result = YES;
+        
+        // simulate network delay
+        [self waitForCompletion:1.0];
+        
+        // normally, we would not save anything locally until after the API confirmed the new tweet
+        BOOL apiCallSuccess = YES;
+        if (apiCallSuccess) {
+            NSManagedObjectContext * context = [[STCDataManager sharedManager]managedObjectContext];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
+            
+            Tweet * managedModelObject = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
+            managedModelObject.created_at = [NSDate date];
+            managedModelObject.text = tweetText;
+            managedModelObject.favourites_count = @0;
+            
+            // Save the context.
+            NSError *error = nil;
+            if (![context save:&error]) {
+                err = [[NSError alloc]initWithDomain:error.domain
+                                                code:error.code
+                                            userInfo:error.userInfo];
+            }
+            else {
+                [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationNameNewTweetPosted object:nil];
+            }
+        }
+        
+        
+        
+
+    }
+    else {
+        NSDictionary * userInfo = @{
+                                    NSLocalizedDescriptionKey : @"The tweet is too long",
+                                    NSLocalizedRecoverySuggestionErrorKey : @"Limit tweets to 138 characters or less."
+                                    };
+        err = [NSError errorWithDomain:@"ca.jasoncross.posttweet"
+                                  code:kSampleTwitterClientErrorCodeTweetTooLong
+                              userInfo:userInfo];
+    }
+    
+    responseBlock(result, err);
 }
 
 + (BOOL) firstDate:(NSDate*)firstDate isGreaterThanSecondDate:(NSDate*)secondDate byMoreThanXMinutes:(NSUInteger)minutes {

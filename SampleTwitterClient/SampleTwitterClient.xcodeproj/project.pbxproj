@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F663A3531A7AFCE10047ACDE /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3521A7AFCE10047ACDE /* Tweet.m */; };
 		F663A3561A7AFCE20047ACDE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3551A7AFCE20047ACDE /* User.m */; };
 		F663A35B1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A35A1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m */; };
+		F663A35E1A7B1FF00047ACDE /* STCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */; };
+		F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3601A7B26AE0047ACDE /* Tweet.m */; };
+		F663A3631A7B27580047ACDE /* STCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F663A3621A7B27580047ACDE /* STCTableViewCell.xib */; };
+		F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */; };
 		F683A0651A7AB58600977E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0641A7AB58600977E6F /* main.m */; };
 		F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0671A7AB58600977E6F /* AppDelegate.m */; };
 		F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */; };
 		F683A06E1A7AB58600977E6F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A06D1A7AB58600977E6F /* MasterViewController.m */; };
-		F683A0711A7AB58600977E6F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0701A7AB58600977E6F /* DetailViewController.m */; };
 		F683A0741A7AB58600977E6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F683A0721A7AB58600977E6F /* Main.storyboard */; };
 		F683A0761A7AB58600977E6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F683A0751A7AB58600977E6F /* Images.xcassets */; };
 		F683A0791A7AB58600977E6F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F683A0771A7AB58600977E6F /* LaunchScreen.xib */; };
@@ -36,12 +38,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F663A3511A7AFCE10047ACDE /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
-		F663A3521A7AFCE10047ACDE /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		F663A3541A7AFCE20047ACDE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F663A3551A7AFCE20047ACDE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F663A3591A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		F663A35A1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		F663A35C1A7B1FF00047ACDE /* STCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCTableViewCell.h; sourceTree = "<group>"; };
+		F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCTableViewCell.m; sourceTree = "<group>"; };
+		F663A35F1A7B26AE0047ACDE /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		F663A3601A7B26AE0047ACDE /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		F663A3621A7B27580047ACDE /* STCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STCTableViewCell.xib; sourceTree = "<group>"; };
+		F663A3661A7B2EDD0047ACDE /* PostTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTweetViewController.h; sourceTree = "<group>"; };
+		F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTweetViewController.m; sourceTree = "<group>"; };
 		F683A05F1A7AB58600977E6F /* SampleTwitterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTwitterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F683A0631A7AB58600977E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F683A0641A7AB58600977E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,8 +57,6 @@
 		F683A06A1A7AB58600977E6F /* SampleTwitterClient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleTwitterClient.xcdatamodel; sourceTree = "<group>"; };
 		F683A06C1A7AB58600977E6F /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		F683A06D1A7AB58600977E6F /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		F683A06F1A7AB58600977E6F /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		F683A0701A7AB58600977E6F /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		F683A0731A7AB58600977E6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F683A0751A7AB58600977E6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F683A0781A7AB58600977E6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,10 +99,10 @@
 				F683A08E1A7ACA0F00977E6F /* STCServiceLayer.h */,
 				F683A08F1A7ACA0F00977E6F /* STCServiceLayer.m */,
 				F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */,
+				F663A35F1A7B26AE0047ACDE /* Tweet.h */,
+				F663A3601A7B26AE0047ACDE /* Tweet.m */,
 				F663A3541A7AFCE20047ACDE /* User.h */,
 				F663A3551A7AFCE20047ACDE /* User.m */,
-				F663A3511A7AFCE10047ACDE /* Tweet.h */,
-				F663A3521A7AFCE10047ACDE /* Tweet.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -109,6 +114,29 @@
 				F663A35A1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m */,
 			);
 			name = categories;
+			sourceTree = "<group>";
+		};
+		F663A3641A7B27A10047ACDE /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F663A35C1A7B1FF00047ACDE /* STCTableViewCell.h */,
+				F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */,
+				F663A3621A7B27580047ACDE /* STCTableViewCell.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		F663A3651A7B27AD0047ACDE /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F683A0941A7AD61100977E6F /* LoginViewController.h */,
+				F683A0951A7AD61100977E6F /* LoginViewController.m */,
+				F683A06C1A7AB58600977E6F /* MasterViewController.h */,
+				F683A06D1A7AB58600977E6F /* MasterViewController.m */,
+				F663A3661A7B2EDD0047ACDE /* PostTweetViewController.h */,
+				F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 		F683A0561A7AB58600977E6F = {
@@ -134,14 +162,10 @@
 			children = (
 				F663A3581A7B06AD0047ACDE /* categories */,
 				F663A3571A7AFCEE0047ACDE /* model */,
+				F663A3641A7B27A10047ACDE /* view */,
+				F663A3651A7B27AD0047ACDE /* controllers */,
 				F683A0661A7AB58600977E6F /* AppDelegate.h */,
 				F683A0671A7AB58600977E6F /* AppDelegate.m */,
-				F683A0941A7AD61100977E6F /* LoginViewController.h */,
-				F683A0951A7AD61100977E6F /* LoginViewController.m */,
-				F683A06C1A7AB58600977E6F /* MasterViewController.h */,
-				F683A06D1A7AB58600977E6F /* MasterViewController.m */,
-				F683A06F1A7AB58600977E6F /* DetailViewController.h */,
-				F683A0701A7AB58600977E6F /* DetailViewController.m */,
 				F683A0721A7AB58600977E6F /* Main.storyboard */,
 				F683A0751A7AB58600977E6F /* Images.xcassets */,
 				F683A0771A7AB58600977E6F /* LaunchScreen.xib */,
@@ -261,6 +285,7 @@
 			files = (
 				F683A0741A7AB58600977E6F /* Main.storyboard in Resources */,
 				F683A0791A7AB58600977E6F /* LaunchScreen.xib in Resources */,
+				F663A3631A7B27580047ACDE /* STCTableViewCell.xib in Resources */,
 				F683A0761A7AB58600977E6F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,16 +305,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F683A09C1A7ADE7500977E6F /* STCGlobals.m in Sources */,
-				F683A0711A7AB58600977E6F /* DetailViewController.m in Sources */,
+				F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */,
 				F683A06E1A7AB58600977E6F /* MasterViewController.m in Sources */,
 				F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */,
 				F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */,
 				F683A0961A7AD61100977E6F /* LoginViewController.m in Sources */,
+				F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */,
 				F663A3561A7AFCE20047ACDE /* User.m in Sources */,
 				F683A0901A7ACA0F00977E6F /* STCServiceLayer.m in Sources */,
-				F663A3531A7AFCE10047ACDE /* Tweet.m in Sources */,
 				F683A0651A7AB58600977E6F /* main.m in Sources */,
 				F683A0991A7AD82300977E6F /* STCDataManager.m in Sources */,
+				F663A35E1A7B1FF00047ACDE /* STCTableViewCell.m in Sources */,
 				F663A35B1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

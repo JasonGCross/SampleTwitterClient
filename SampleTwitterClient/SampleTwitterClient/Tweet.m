@@ -14,5 +14,6 @@
 @dynamic created_at;
 @dynamic id_str;
 @dynamic text;
+@dynamic favourites_count;
 
 @end

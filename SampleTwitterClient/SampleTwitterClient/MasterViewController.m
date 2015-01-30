@@ -7,11 +7,13 @@
 //
 
 #import "MasterViewController.h"
-#import "DetailViewController.h"
 #import "STCDataManager.h"
 #import "UIAlertView+MKNetworkKitAdditions.h"
 #import "STCServiceLayer.h"
 #import "Tweet.h"
+#import "STCTableViewCell.h"
+#import "STCGlobals.h"
+
 
 
 @interface MasterViewController ()
@@ -23,13 +25,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newTweetAdded) name:kNotificationNameNewTweetPosted object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.managedObjectContext = [[STCDataManager sharedManager]managedObjectContext];
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+
+    [self.tableView registerNib:[UINib nibWithNibName:@"STCTableViewCell" bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:kTwitterCellReuseIdentifier];
+    
+    UIBarButtonItem * logoutButton = [[UIBarButtonItem alloc]initWithTitle:@"logout" style:UIBarButtonItemStyleDone target:self action:@selector(logout)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -44,13 +53,6 @@
             [UIAlertView showWithError:error];
         }
         else {
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:self.managedObjectContext];
-            
-            for (Tweet * tweet in tweets) {
-                Tweet * managedModelObject = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-                managedModelObject.created_at = tweet.created_at;
-                managedModelObject.text = tweet.text;
-            }
             
             [[STCDataManager sharedManager] saveContext];
             [self.tableView reloadData];
@@ -58,30 +60,29 @@
     }];
 }
 
+
+#pragma mark - notifications
+
+- (void) newTweetAdded {
+    [self.tableView reloadData];
+}
+
+#pragma mark - actions
+
+- (void) logout {
+    // TODO: logout against the API
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)insertNewObject:(id)sender {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-        
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"created_at"];
-        
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        [UIAlertView showWithError:error];
-    }
+    [self performSegueWithIdentifier:kMasterToPostTweetSegueId sender:self];
 }
 
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+    if ([[segue identifier] isEqualToString:kMasterToPostTweetSegueId]) {
+        // don't need to do anything
     }
 }
 
@@ -99,14 +100,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    STCTableViewCell *cell = (STCTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kTwitterCellReuseIdentifier forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -123,9 +124,9 @@
     }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [object valueForKey:@"text"];
+- (void)configureCell:(STCTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Tweet *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell bindToData:object];
 }
 
 #pragma mark - Fetched results controller
@@ -205,7 +206,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(STCTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:

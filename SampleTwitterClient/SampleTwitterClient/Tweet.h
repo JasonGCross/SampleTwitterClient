@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSDate * created_at;
 @property (nonatomic, retain) NSString * id_str;
 @property (nonatomic, retain) NSString * text;
+@property (nonatomic, retain) NSNumber * favourites_count;
 
 @end

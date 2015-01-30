@@ -9,7 +9,9 @@
 #import "STCGlobals.h"
 
 NSString* const kLoginToMasterSegueId = @"LoginToMasterSegue";
-
+NSString* const kTwitterCellReuseIdentifier = @"TwitterCustomCell";
+NSString* const kMasterToPostTweetSegueId = @"MasterToPostTweetSegue";
+NSString* const kNotificationNameNewTweetPosted = @"NotificationNewTweetPosted";
 
 @implementation STCGlobals
 

@@ -10,12 +10,13 @@
 
 
 #define kSampleTwitterClientErrorCodeLoginError 1001
+#define kSampleTwitterClientErrorCodeTweetTooLong 1002
 
 
-// Segues
 extern NSString* const kLoginToMasterSegueId;
-
-
+extern NSString* const kTwitterCellReuseIdentifier;
+extern NSString* const kMasterToPostTweetSegueId;
+extern NSString* const kNotificationNameNewTweetPosted;
 
 @interface STCGlobals : NSObject
 

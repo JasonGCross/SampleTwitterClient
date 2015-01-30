@@ -148,4 +148,46 @@
     XCTAssertTrue(result);
 }
 
+- (void) testPostingTweetWithFailure {
+    NSString * tweetString;
+    tweetString = @"abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890 abcdefghijklmnopqrstuvwxyz 1234567890";
+    
+    XCTestExpectation * expectation = [self expectationWithDescription:@"Testing posting new tweet"];
+    
+    [STCServiceLayer postTweetText:tweetString responseBlock:^(BOOL success, NSError *error) {
+        XCTAssertNotNil(error);
+        XCTAssertFalse(success);
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (nil != error) {
+            XCTFail(@"Login timed out");
+        }
+    }];
+
+}
+
+- (void) testPostingTweetWithSuccess {
+    NSString * tweetString;
+    tweetString = @"abcdefghijklmnop";
+    
+    XCTestExpectation * expectation = [self expectationWithDescription:@"Testing posting new tweet"];
+    
+    [STCServiceLayer postTweetText:tweetString responseBlock:^(BOOL success, NSError *error) {
+        XCTAssertNil(error);
+        XCTAssertTrue(success);
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
+        if (nil != error) {
+            XCTFail(@"Login timed out");
+        }
+    }];
+
+}
+
 @end

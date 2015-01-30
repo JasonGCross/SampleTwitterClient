@@ -4,6 +4,7 @@
         <attribute name="created_at" optional="YES" attributeType="Date">
             <userInfo/>
         </attribute>
+        <attribute name="favourites_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id_str" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <userInfo/>
@@ -14,7 +15,7 @@
         <attribute name="screen_name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tweet" positionX="261" positionY="189" width="128" height="90"/>
+        <element name="Tweet" positionX="261" positionY="189" width="128" height="105"/>
         <element name="User" positionX="261" positionY="216" width="128" height="90"/>
     </elements>
 </model>
