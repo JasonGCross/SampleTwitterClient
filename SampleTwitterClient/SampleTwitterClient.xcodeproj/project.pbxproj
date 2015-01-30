@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F663A3531A7AFCE10047ACDE /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3521A7AFCE10047ACDE /* Tweet.m */; };
+		F663A3561A7AFCE20047ACDE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3551A7AFCE20047ACDE /* User.m */; };
 		F683A0651A7AB58600977E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0641A7AB58600977E6F /* main.m */; };
 		F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0671A7AB58600977E6F /* AppDelegate.m */; };
 		F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */; };
@@ -33,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F663A3511A7AFCE10047ACDE /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		F663A3521A7AFCE10047ACDE /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		F663A3541A7AFCE20047ACDE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F663A3551A7AFCE20047ACDE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F683A05F1A7AB58600977E6F /* SampleTwitterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTwitterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F683A0631A7AB58600977E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F683A0641A7AB58600977E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -77,6 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F663A3571A7AFCEE0047ACDE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F683A0971A7AD82300977E6F /* STCDataManager.h */,
+				F683A0981A7AD82300977E6F /* STCDataManager.m */,
+				F683A08E1A7ACA0F00977E6F /* STCServiceLayer.h */,
+				F683A08F1A7ACA0F00977E6F /* STCServiceLayer.m */,
+				F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */,
+				F663A3541A7AFCE20047ACDE /* User.h */,
+				F663A3551A7AFCE20047ACDE /* User.m */,
+				F663A3511A7AFCE10047ACDE /* Tweet.h */,
+				F663A3521A7AFCE10047ACDE /* Tweet.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		F683A0561A7AB58600977E6F = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +120,7 @@
 		F683A0611A7AB58600977E6F /* SampleTwitterClient */ = {
 			isa = PBXGroup;
 			children = (
+				F663A3571A7AFCEE0047ACDE /* model */,
 				F683A0661A7AB58600977E6F /* AppDelegate.h */,
 				F683A0671A7AB58600977E6F /* AppDelegate.m */,
 				F683A0941A7AD61100977E6F /* LoginViewController.h */,
@@ -109,12 +132,7 @@
 				F683A0721A7AB58600977E6F /* Main.storyboard */,
 				F683A0751A7AB58600977E6F /* Images.xcassets */,
 				F683A0771A7AB58600977E6F /* LaunchScreen.xib */,
-				F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */,
 				F683A0621A7AB58600977E6F /* Supporting Files */,
-				F683A08E1A7ACA0F00977E6F /* STCServiceLayer.h */,
-				F683A08F1A7ACA0F00977E6F /* STCServiceLayer.m */,
-				F683A0971A7AD82300977E6F /* STCDataManager.h */,
-				F683A0981A7AD82300977E6F /* STCDataManager.m */,
 				F683A09A1A7ADE7500977E6F /* STCGlobals.h */,
 				F683A09B1A7ADE7500977E6F /* STCGlobals.m */,
 			);
@@ -254,7 +272,9 @@
 				F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */,
 				F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */,
 				F683A0961A7AD61100977E6F /* LoginViewController.m in Sources */,
+				F663A3561A7AFCE20047ACDE /* User.m in Sources */,
 				F683A0901A7ACA0F00977E6F /* STCServiceLayer.m in Sources */,
+				F663A3531A7AFCE10047ACDE /* Tweet.m in Sources */,
 				F683A0651A7AB58600977E6F /* main.m in Sources */,
 				F683A0991A7AD82300977E6F /* STCDataManager.m in Sources */,
 			);
@@ -453,6 +473,7 @@
 				F683A08A1A7AB58600977E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F683A08B1A7AB58600977E6F /* Build configuration list for PBXNativeTarget "SampleTwitterClientTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +482,7 @@
 				F683A08D1A7AB58600977E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

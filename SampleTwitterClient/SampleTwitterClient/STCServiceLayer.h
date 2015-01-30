@@ -13,9 +13,11 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^WebServiceLoginResponseBlock) (BOOL success, NSError * error);
+typedef void (^TweetsResponseBlock) (NSArray* tweets, NSError* error);
 
 @interface STCServiceLayer : NSObject
 
 + (void) loginWithUsername:(NSString*)username password:(NSString*)password responseBlock:(WebServiceLoginResponseBlock)responseBlock;
++ (void) fetchTweetsSinceDate:(NSDate*)date responseBlock:(TweetsResponseBlock)responseBlock;
 
 @end

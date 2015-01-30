@@ -36,7 +36,7 @@
     NSError * err = nil;
     
     // simulate network delay
-    [self waitForCompletion:1.5];
+    [self waitForCompletion:1.0];
     
     if ([[username lowercaseString] isEqualToString:@"tester"] && [password isEqualToString:@"abc123"]) {
         result = YES;
@@ -50,6 +50,18 @@
     }
     
     responseBlock(result, err);
+}
+
++ (void) fetchTweetsSinceDate:(NSDate*)date responseBlock:(TweetsResponseBlock)responseBlock; {
+    NSMutableArray * resultsArray = nil;
+    NSError * err = nil;
+    
+    // simulate network delay
+    [self waitForCompletion:2.0];
+    
+    
+    
+    responseBlock(resultsArray, err);
 }
 
 @end
