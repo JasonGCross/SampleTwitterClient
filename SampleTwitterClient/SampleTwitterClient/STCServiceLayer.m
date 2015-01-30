@@ -129,7 +129,6 @@
             firstTweet.text = [NSString stringWithFormat:@"One more tweet sent at: %@", dateString];
             firstTweet.id_str = dateString;
             
-            [context insertObject:firstTweet];
             [resultsArray addObject:firstTweet];
             
             Tweet * secondTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
@@ -138,7 +137,6 @@
             secondTweet.text = [NSString stringWithFormat:@"And another tweet sent at: %@", dateString];
             secondTweet.id_str = dateString;
             
-            [context insertObject:secondTweet];
             [resultsArray addObject:secondTweet];
             
             [[STCDataManager sharedManager] saveContext];

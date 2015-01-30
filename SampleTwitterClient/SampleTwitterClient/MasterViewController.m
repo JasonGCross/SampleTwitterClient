@@ -10,8 +10,8 @@
 #import "DetailViewController.h"
 #import "STCDataManager.h"
 #import "UIAlertView+MKNetworkKitAdditions.h"
-
-
+#import "STCServiceLayer.h"
+#import "Tweet.h"
 
 
 @interface MasterViewController ()
@@ -35,9 +35,27 @@
     self.navigationItem.rightBarButtonItem = addButton;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSDate * date = [NSDate date];
+    [STCServiceLayer fetchTweetsSinceDate:date responseBlock:^(NSArray *tweets, NSError *error) {
+        if (nil != error) {
+            [UIAlertView showWithError:error];
+        }
+        else {
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:self.managedObjectContext];
+            
+            for (Tweet * tweet in tweets) {
+                Tweet * managedModelObject = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+                managedModelObject.created_at = tweet.created_at;
+                managedModelObject.text = tweet.text;
+            }
+            
+            [[STCDataManager sharedManager] saveContext];
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)insertNewObject:(id)sender {
@@ -47,7 +65,7 @@
         
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:[NSDate date] forKey:@"created_at"];
         
     // Save the context.
     NSError *error = nil;
@@ -70,12 +88,14 @@
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.fetchedResultsController sections] count];
+    NSInteger value = [[self.fetchedResultsController sections] count];
+    return value;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    NSInteger value = [sectionInfo numberOfObjects];
+    return  value;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,7 +125,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [object valueForKey:@"text"];
 }
 
 #pragma mark - Fetched results controller
@@ -133,7 +153,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
