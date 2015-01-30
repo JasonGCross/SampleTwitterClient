@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "STCServiceLayer.h"
 #import "STCGlobals.h"
-
+#import "UIAlertView+MKNetworkKitAdditions.h"
 
 
 @interface LoginViewController ()
@@ -42,17 +42,8 @@
             if (success) {
                 [self performSegueWithIdentifier:kLoginToMasterSegueId sender:self];
             }
-            else {
-                NSString * message = error.localizedDescription;
-                if (message.length < 1) {
-                    message = @"The username / password combination is not valid.";
-                }
-                UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Missing Information"
-                                                                    message:message
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"O.K."
-                                                          otherButtonTitles: nil];
-                [alertView show];
+            else if (nil != error) {
+                [UIAlertView showWithError:error];
             }
         }];
     }

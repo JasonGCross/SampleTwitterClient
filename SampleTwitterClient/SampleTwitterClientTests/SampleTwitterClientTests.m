@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "STCServiceLayer.h"
 #import "STCGlobals.h"
+#import "Tweet.h"
 
 
 @interface SampleTwitterClientTests : XCTestCase
@@ -88,6 +89,9 @@
             XCTFail(@"unexpected error fetching tweets");
         }
         else {
+            id obj = tweets.firstObject;
+            XCTAssertNotNil(obj);
+            XCTAssertTrue([obj isKindOfClass:[Tweet class]]);
             [expectation fulfill];
         }
     }];
@@ -97,6 +101,51 @@
             XCTFail(@"Login timed out");
         }
     }];
+}
+
+- (void) testDateDifferences {
+    NSCalendar * calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDate * date1;
+    NSDate * date2;
+    
+    NSDateComponents * components = [[NSDateComponents alloc]init];
+    components.year = 2000;
+    components.month = 1;
+    components.day = 1;
+    components.minute = 20;
+    date1 = [calendar dateFromComponents:components];
+    
+    
+    NSDateComponents * components2 = [[NSDateComponents alloc]init];
+    components2.year = 2000;
+    components2.month = 1;
+    components2.day = 1;
+    components2.minute = 43;
+    date2 = [calendar dateFromComponents:components2];
+    
+    BOOL result;
+    result = [STCServiceLayer firstDate:date2 isGreaterThanSecondDate:date1 byMoreThanXMinutes:10];
+    XCTAssertTrue(result);
+    
+    result = [STCServiceLayer firstDate:date2 isGreaterThanSecondDate:date1 byMoreThanXMinutes:49];
+    XCTAssertFalse(result);
+    
+    result = [STCServiceLayer firstDate:date1 isGreaterThanSecondDate:date2 byMoreThanXMinutes:10];
+    XCTAssertFalse(result);
+    
+    result = [STCServiceLayer firstDate:date1 isGreaterThanSecondDate:date1 byMoreThanXMinutes:10];
+    XCTAssertFalse(result);
+    
+    components.year = 2015;
+    date1 = [calendar dateFromComponents:components];
+    
+    // now that the first date is 15 years newer, opposite of above is expected
+    result = [STCServiceLayer firstDate:date2 isGreaterThanSecondDate:date1 byMoreThanXMinutes:10];
+    XCTAssertFalse(result);
+    
+    result = [STCServiceLayer firstDate:date1 isGreaterThanSecondDate:date2 byMoreThanXMinutes:10];
+    XCTAssertTrue(result);
 }
 
 @end
