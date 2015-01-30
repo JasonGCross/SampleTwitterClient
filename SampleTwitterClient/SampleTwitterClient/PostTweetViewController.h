@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostTweetViewController : UIViewController
+@interface PostTweetViewController : UIViewController <UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextView *twitterTextView;
 @property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
 - (IBAction)cancelButtonPressed:(id)sender;

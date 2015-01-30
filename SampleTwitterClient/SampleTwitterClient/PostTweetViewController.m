@@ -9,7 +9,7 @@
 #import "PostTweetViewController.h"
 #import "STCServiceLayer.h"
 #import "UIAlertView+MKNetworkKitAdditions.h"
-
+#import "STCGlobals.h"
 
 
 @interface PostTweetViewController ()
@@ -23,11 +23,12 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.twitterTextView.text = @"";
+    self.characterCountLabel.text = [@(kMaxTwitterTextCharacterLength) stringValue];
 }
-
 /*
 #pragma mark - Navigation
 
@@ -57,4 +58,12 @@
         }
     }];
 }
+
+#pragma mark - text view delegate
+
+- (void) textViewDidChange:(UITextView *)textView {
+    NSNumber* charactersRemaining = @(kMaxTwitterTextCharacterLength - textView.text.length);
+    self.characterCountLabel.text = [charactersRemaining stringValue];
+}
+
 @end

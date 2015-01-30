@@ -11,6 +11,7 @@
 
 #define kSampleTwitterClientErrorCodeLoginError 1001
 #define kSampleTwitterClientErrorCodeTweetTooLong 1002
+#define kMaxTwitterTextCharacterLength 140
 
 
 extern NSString* const kLoginToMasterSegueId;

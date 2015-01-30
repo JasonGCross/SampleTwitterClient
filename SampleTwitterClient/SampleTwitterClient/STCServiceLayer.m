@@ -158,7 +158,7 @@
     BOOL result = NO;
     NSError * err = nil;
     
-    if (tweetText.length > 1 && tweetText.length < 138) {
+    if (tweetText.length > 1 && tweetText.length < kMaxTwitterTextCharacterLength) {
         result = YES;
         
         // simulate network delay
@@ -192,9 +192,10 @@
 
     }
     else {
+        NSString * recoverySuggestion = [NSString stringWithFormat:@"Limit tweets to %i characters or less.", kMaxTwitterTextCharacterLength];
         NSDictionary * userInfo = @{
                                     NSLocalizedDescriptionKey : @"The tweet is too long",
-                                    NSLocalizedRecoverySuggestionErrorKey : @"Limit tweets to 138 characters or less."
+                                    NSLocalizedRecoverySuggestionErrorKey : recoverySuggestion
                                     };
         err = [NSError errorWithDomain:@"ca.jasoncross.posttweet"
                                   code:kSampleTwitterClientErrorCodeTweetTooLong
