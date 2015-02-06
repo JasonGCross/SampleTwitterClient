@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "JGCBaseModel.h"
 
 
-@interface Tweet : NSManagedObject
+@interface Tweet : JGCBaseModel
 
 @property (nonatomic, retain) NSDate * created_at;
 @property (nonatomic, retain) NSString * id_str;
 @property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) NSNumber * favourites_count;
+@property (nonatomic, retain) NSNumber * favourite_count;
 
 @end

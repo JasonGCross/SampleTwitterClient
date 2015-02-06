@@ -46,7 +46,7 @@ static NSDateFormatter * dateFormatter;
     NSString * dateString = (nil == tweetData.created_at) ? @"" : [dateFormatter stringFromDate:tweetData.created_at];
     self.tweetCreationDateLabel.text = dateString;
     
-    NSString * favoriteString = [tweetData.favourites_count stringValue];
+    NSString * favoriteString = [tweetData.favourite_count stringValue];
     self.tweetFavoritesCountLabel.text = favoriteString;
 }
 

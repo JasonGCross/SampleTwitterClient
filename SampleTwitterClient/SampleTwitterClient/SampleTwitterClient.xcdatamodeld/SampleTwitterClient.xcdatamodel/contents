@@ -4,7 +4,7 @@
         <attribute name="created_at" optional="YES" attributeType="Date">
             <userInfo/>
         </attribute>
-        <attribute name="favourites_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="favourite_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id_str" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <userInfo/>

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "JGCBaseModel.h"
 
 
-@interface User : NSManagedObject
+@interface User : JGCBaseModel
 
 @property (nonatomic, retain) NSString * screen_name;
 @property (nonatomic, retain) NSString * profile_image_url;

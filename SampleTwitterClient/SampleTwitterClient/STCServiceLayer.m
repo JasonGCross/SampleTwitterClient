@@ -208,7 +208,7 @@ static NSOperationQueue * requestOperationQueue;
 //        firstTweet.text = @"how exciting, my very first tweet!";
 //        firstTweet.id_str = @"abc123myfirsttweet";
 //        firstTweet.created_at = [NSDate date];
-//        firstTweet.favourites_count = @4;
+//        firstTweet.favourite_count = @4;
 //        
 //        [resultsArray addObject:firstTweet];
 //        
@@ -216,7 +216,7 @@ static NSOperationQueue * requestOperationQueue;
 //        secondTweet.text = @"it's still kinda fun";
 //        secondTweet.id_str = @"abcxyzmysecondtweet";
 //        secondTweet.created_at = [NSDate date];
-//        secondTweet.favourites_count = @13;
+//        secondTweet.favourite_count = @13;
 //        
 //        [resultsArray addObject:secondTweet];
 //        
@@ -225,7 +225,7 @@ static NSOperationQueue * requestOperationQueue;
 //    else {
 //        // fake that the favorite count has been increased by others
 //        for (Tweet * tweet in previousTweets) {
-//            tweet.favourites_count = @([tweet.favourites_count integerValue] + 1);
+//            tweet.favourite_count = @([tweet.favourite_count integerValue] + 1);
 //        }
 //        
 //        // what is the date of the latest tweet?
@@ -283,7 +283,7 @@ static NSOperationQueue * requestOperationQueue;
             Tweet * managedModelObject = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
             managedModelObject.created_at = [NSDate date];
             managedModelObject.text = tweetText;
-            managedModelObject.favourites_count = @0;
+            managedModelObject.favourite_count = @0;
             
             // Save the context.
             NSError *error = nil;
