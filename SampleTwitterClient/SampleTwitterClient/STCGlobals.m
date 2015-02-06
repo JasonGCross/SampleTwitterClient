@@ -12,6 +12,7 @@ NSString* const kLoginToMasterSegueId = @"LoginToMasterSegue";
 NSString* const kTwitterCellReuseIdentifier = @"TwitterCustomCell";
 NSString* const kMasterToPostTweetSegueId = @"MasterToPostTweetSegue";
 NSString* const kNotificationNameNewTweetPosted = @"NotificationNewTweetPosted";
+NSString* const kNotificationNameTwitterLoginSuccess = @"kNotificationNameTwitterLoginSuccess";
 
 @implementation STCGlobals
 

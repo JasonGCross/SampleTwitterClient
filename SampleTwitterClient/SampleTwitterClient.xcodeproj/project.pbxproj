@@ -25,6 +25,7 @@
 		F683A0961A7AD61100977E6F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0951A7AD61100977E6F /* LoginViewController.m */; };
 		F683A0991A7AD82300977E6F /* STCDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0981A7AD82300977E6F /* STCDataManager.m */; };
 		F683A09C1A7ADE7500977E6F /* STCGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A09B1A7ADE7500977E6F /* STCGlobals.m */; };
+		F6D641961A843E4700AD96EA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D641951A843E4700AD96EA /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		F683A0981A7AD82300977E6F /* STCDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCDataManager.m; sourceTree = "<group>"; };
 		F683A09A1A7ADE7500977E6F /* STCGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCGlobals.h; sourceTree = "<group>"; };
 		F683A09B1A7ADE7500977E6F /* STCGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCGlobals.m; sourceTree = "<group>"; };
+		F6D641951A843E4700AD96EA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D641961A843E4700AD96EA /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +145,7 @@
 		F683A0561A7AB58600977E6F = {
 			isa = PBXGroup;
 			children = (
+				F6D641951A843E4700AD96EA /* Social.framework */,
 				F683A0611A7AB58600977E6F /* SampleTwitterClient */,
 				F683A0811A7AB58600977E6F /* SampleTwitterClientTests */,
 				F683A0601A7AB58600977E6F /* Products */,

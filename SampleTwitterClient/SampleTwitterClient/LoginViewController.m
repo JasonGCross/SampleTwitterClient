@@ -10,6 +10,8 @@
 #import "STCServiceLayer.h"
 #import "STCGlobals.h"
 #import "UIAlertView+MKNetworkKitAdditions.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 
 @interface LoginViewController ()
@@ -26,6 +28,43 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.passwordTextField.text = nil;
+    [self loginToTwitter];
+}
+
+#pragma mark - Twitter
+
+- (void) loginToTwitter {
+    ACAccountStore * accountStore = [[ACAccountStore alloc]init];
+    ACAccountType * twitterAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    [accountStore requestAccessToAccountsWithType:twitterAccountType options:nil completion:^(BOOL granted, NSError *error) {
+        if (NO == granted) {
+            NSLog(@"permission denied to twitter account store");
+            if (nil != error) {
+                [UIAlertView showWithError:error];
+            }
+        }
+        else {
+            // log in to a single user's account, for development and testing only
+            // https://dev.twitter.com/oauth/overview/application-owner-access-tokens
+            ACAccountCredential * accountCredential = [[ACAccountCredential alloc]initWithOAuthToken:@"1499396000-y8GRiXrI9N2xX4hhLkc8wy7nynyh0FK2CjkKyN7"
+                                                                                         tokenSecret:@"ZniBNmt7ZY4lT83SGBeDVIrsoSquz00k821DMBfjxEsVO"];
+            
+            ACAccount * twitterAccount = [[ACAccount alloc]initWithAccountType:twitterAccountType];
+            twitterAccount.credential = accountCredential;
+            [accountStore saveAccount:twitterAccount withCompletionHandler:^(BOOL success, NSError *error) {
+                if (NO == success) {
+                    NSLog(@"Save of twitter account failed");
+                    if (nil != error) {
+                        [UIAlertView showWithError:error];
+                    }
+                }
+                else {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNameTwitterLoginSuccess object:nil];
+                }
+            }];
+        }
+    }];
+    
 }
 
 #pragma mark - IBActions

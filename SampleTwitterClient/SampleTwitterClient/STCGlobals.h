@@ -18,6 +18,7 @@ extern NSString* const kLoginToMasterSegueId;
 extern NSString* const kTwitterCellReuseIdentifier;
 extern NSString* const kMasterToPostTweetSegueId;
 extern NSString* const kNotificationNameNewTweetPosted;
+extern NSString* const kNotificationNameTwitterLoginSuccess;
 
 @interface STCGlobals : NSObject
 
