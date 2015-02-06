@@ -26,6 +26,8 @@
 		F683A0991A7AD82300977E6F /* STCDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0981A7AD82300977E6F /* STCDataManager.m */; };
 		F683A09C1A7ADE7500977E6F /* STCGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A09B1A7ADE7500977E6F /* STCGlobals.m */; };
 		F6D641961A843E4700AD96EA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D641951A843E4700AD96EA /* Social.framework */; };
+		F6D641981A855A0E00AD96EA /* twitter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = F6D641971A855A0E00AD96EA /* twitter_data.json */; };
+		F6D641991A855E5700AD96EA /* twitter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = F6D641971A855A0E00AD96EA /* twitter_data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,7 @@
 		F683A09A1A7ADE7500977E6F /* STCGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCGlobals.h; sourceTree = "<group>"; };
 		F683A09B1A7ADE7500977E6F /* STCGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCGlobals.m; sourceTree = "<group>"; };
 		F6D641951A843E4700AD96EA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		F6D641971A855A0E00AD96EA /* twitter_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = twitter_data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,7 @@
 		F683A0811A7AB58600977E6F /* SampleTwitterClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				F6D641971A855A0E00AD96EA /* twitter_data.json */,
 				F683A0841A7AB58600977E6F /* SampleTwitterClientTests.m */,
 				F683A0821A7AB58600977E6F /* Supporting Files */,
 			);
@@ -288,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F683A0741A7AB58600977E6F /* Main.storyboard in Resources */,
+				F6D641991A855E5700AD96EA /* twitter_data.json in Resources */,
 				F683A0791A7AB58600977E6F /* LaunchScreen.xib in Resources */,
 				F663A3631A7B27580047ACDE /* STCTableViewCell.xib in Resources */,
 				F683A0761A7AB58600977E6F /* Images.xcassets in Resources */,
@@ -298,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D641981A855A0E00AD96EA /* twitter_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

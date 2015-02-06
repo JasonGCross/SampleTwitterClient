@@ -190,4 +190,25 @@
 
 }
 
+- (void) testDeserializingJSON {
+    NSURL * jsonFileURL = [[NSBundle mainBundle]URLForResource:@"twitter_data" withExtension:@"json"];
+    NSError * fileReadError = nil;
+    NSFileHandle * fileHandle = [NSFileHandle fileHandleForReadingFromURL:jsonFileURL error:&fileReadError];
+    XCTAssertNil(fileReadError);
+    XCTAssertNotNil(fileHandle);
+    if (nil == fileReadError) {
+        NSData * jsonData = fileHandle.readDataToEndOfFile;
+        NSError * jsonDeserializationError = nil;
+        id obj = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonDeserializationError];
+        XCTAssertNil(jsonDeserializationError);
+        XCTAssertNotNil(obj);
+        BOOL expectedFormat = [obj isKindOfClass:[NSArray class]];
+        XCTAssertTrue(expectedFormat);
+        if (expectedFormat) {
+            NSArray * arrayOfTweets = (NSArray*)obj;
+            XCTAssertTrue(arrayOfTweets.count == 20);
+        }
+    }
+}
+
 @end
