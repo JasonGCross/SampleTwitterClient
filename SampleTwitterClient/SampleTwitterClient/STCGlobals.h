@@ -14,12 +14,20 @@
 #define kMaxTwitterTextCharacterLength 140
 
 
+#pragma mark - segues
 extern NSString* const kLoginToMasterSegueId;
-extern NSString* const kTwitterCellReuseIdentifier;
 extern NSString* const kMasterToPostTweetSegueId;
+
+#pragma mark - notifications
 extern NSString* const kNotificationNameNewTweetPosted;
 extern NSString* const kNotificationNameTwitterLoginSuccess;
 
+#pragma mark - miscellaneous string constants
+extern NSString* const kTwitterCellReuseIdentifier;
+extern NSString* const kTwitterAPIBasePath;
+
+
+#pragma mark - class definition
 @interface STCGlobals : NSObject
 
 @end

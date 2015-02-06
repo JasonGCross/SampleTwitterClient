@@ -17,6 +17,7 @@ typedef void (^TweetsResponseBlock) (NSArray* tweets, NSError* error);
 
 @interface STCServiceLayer : NSObject
 
++ (void) loginDeveloperAccountUsingResponseBlock:(WebServiceLoginResponseBlock)responseBlock;
 + (void) loginWithUsername:(NSString*)username password:(NSString*)password responseBlock:(WebServiceLoginResponseBlock)responseBlock;
 + (void) fetchTweetsSinceDate:(NSDate*)date responseBlock:(TweetsResponseBlock)responseBlock;
 + (void) postTweetText:(NSString*)tweetText responseBlock:(WebServiceLoginResponseBlock)responseBlock;
