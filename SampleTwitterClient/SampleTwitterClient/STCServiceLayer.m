@@ -13,6 +13,7 @@
 #import "Tweet.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import "STSSettingsManager.h"
 
 
 
@@ -85,17 +86,17 @@ static NSOperationQueue * requestOperationQueue;
             ACAccount * twitterAccount = nil;
             NSArray * matchingAccounts = [accountStore accountsWithAccountType:twitterAccountType];
             if (matchingAccounts.count > 0) {
-                twitterAccount = matchingAccounts.firstObject;
+                twitterAccount = matchingAccounts.lastObject;
             }
             else {
                 twitterAccount = [[ACAccount alloc]initWithAccountType:twitterAccountType];
+                ACAccountCredential * accountCredential = [[ACAccountCredential alloc]initWithOAuthToken:@"1499396000-y8GRiXrI9N2xX4hhLkc8wy7nynyh0FK2CjkKyN7"
+                                                                                             tokenSecret:@"ZniBNmt7ZY4lT83SGBeDVIrsoSquz00k821DMBfjxEsVO"];
+                twitterAccount.credential = accountCredential;
             }
             twitterAcAccount = twitterAccount;
             
-            ACAccountCredential * accountCredential = [[ACAccountCredential alloc]initWithOAuthToken:@"1499396000-y8GRiXrI9N2xX4hhLkc8wy7nynyh0FK2CjkKyN7"
-                                                                                         tokenSecret:@"ZniBNmt7ZY4lT83SGBeDVIrsoSquz00k821DMBfjxEsVO"];
-            twitterAccount.credential = accountCredential;
-            [accountStore saveAccount:twitterAccount withCompletionHandler:^(BOOL success, NSError *error) {
+            [accountStore saveAccount:twitterAcAccount withCompletionHandler:^(BOOL success, NSError *error) {
                 if (NO == success) {
                     NSLog(@"Save of twitter account failed");
                     responseBlock(NO, error);
@@ -113,47 +114,75 @@ static NSOperationQueue * requestOperationQueue;
 
 #pragma mark - data calls
 
-+ (void) fetchTweetsSinceDate:(NSDate*)date responseBlock:(TweetsResponseBlock)responseBlock; {
-    NSMutableArray * resultsArray = [[NSMutableArray alloc]initWithCapacity:2];
-    __block NSError * err = nil;
-    
-    // note: in calling a real API, we would pass in the date as a parameter and also pass in a user ID, amongst others
-    // but for this proof of concept, just create two new tweets
-    // note that *new* means checking the saved data, which would normally be done on the server
-    
-    NSManagedObjectContext * context = [[STCDataManager sharedManager] managedObjectContext];
+
++ (NSFetchRequest *)fetchRequestForLastFetchedTweet:(NSEntityDescription *)entity {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
+    [fetchRequest setFetchLimit:1];
     
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id_str" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
-    
     [fetchRequest setSortDescriptors:sortDescriptors];
-    NSError * fetchError = nil;
-    NSArray * previousTweets = [context executeFetchRequest:fetchRequest error:&fetchError];
-    if (nil != fetchError) {
-        err = [[NSError alloc]initWithDomain:fetchError.domain
-                                        code:fetchError.code
-                                    userInfo:fetchError.userInfo];
+    return fetchRequest;
+}
+
++ (SLRequest *)twitterRequestSinceLatestTweet:(Tweet *)latestTweet {
+    SLRequest *twitterRequest;
+
+    NSURL * url = [NSURL URLWithString:kTwitterAPIBasePath];
+    NSDictionary * parameters = nil;
+    NSMutableDictionary * mutableParameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    // do not fetch all new tweets from Twitter
+    // see https://dev.twitter.com/rest/public/timelines
+    // Twitter advises using two parameters for maximum efficiency:
+    //   1 - max_id (remember from last call)
+    //   2 - since_id (the smallest identifier amongst all tweets previously fetched)
+    if (latestTweet.id_str.length > 0) {
+        mutableParameters[@"since_id"] = latestTweet.id_str;
+    }
+    
+    STSSettingsManager * settingsManager = [STSSettingsManager sharedInstance];
+    NSString * maxIdString = [settingsManager maximumTweetIdFromPreviousFetch];
+    if (maxIdString.length > 0) {
+        NSInteger maxIdInt = [maxIdString integerValue];
+        mutableParameters[@"max_id"] =  @(maxIdInt - 1);
     }
 
-//    if (previousTweets.count < 1) {
-        // fetch all new tweets from Twitter
-        
-        NSString * path = [kTwitterAPIBasePath stringByAppendingPathComponent:@"statuses/home_timeline.json"];
-        NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/1.1/statuses/home_timeline.json"];
-        SLRequest * twitterRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                                        requestMethod:SLRequestMethodGET
-                                                                  URL:url
-                                                           parameters:nil];
-        twitterRequest.account = twitterAcAccount;
+    if (mutableParameters.count > 0) {
+        parameters = [NSDictionary dictionaryWithDictionary:mutableParameters];
+    }
     
+    twitterRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                        requestMethod:SLRequestMethodGET
+                                                  URL:url
+                                           parameters:parameters];
+    twitterRequest.account = twitterAcAccount;
+    return twitterRequest;
+}
+
++ (void) fetchTweetsSinceDate:(NSDate*)date responseBlock:(TweetsResponseBlock)responseBlock; {
+
+    __block NSError * err = nil;
+    
+    NSManagedObjectContext * context = [[STCDataManager sharedManager] managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
+    NSFetchRequest *fetchRequest = [self fetchRequestForLastFetchedTweet:entity];
+    
+    // do we have any tweets yet?
+    NSError * fetchError = nil;
+    NSArray * previousTweets = [context executeFetchRequest:fetchRequest error:&fetchError];
+
+    if (nil != fetchError) {
+        err = [fetchError copy];
+        responseBlock(err);
+    }
+    else {
+        Tweet * latestTweet = previousTweets.firstObject;  // safe: if the array is empty, returns nil
+        SLRequest * twitterRequest = nil;
+        
+        twitterRequest = [self twitterRequestSinceLatestTweet:latestTweet];
+        
         [twitterRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *connectionError) {
             if ((nil != urlResponse) && (nil == connectionError)) {
                 if (nil != responseData) {
@@ -162,15 +191,20 @@ static NSOperationQueue * requestOperationQueue;
                     if (nil == jsonDeserializationError) {
                         if ([obj isKindOfClass:[NSArray class]]) {
                             NSArray * jsonArray = (NSArray*)obj;
-                            for (id value in jsonArray) {
+                            [jsonArray enumerateObjectsUsingBlock:^(id value, NSUInteger idx, BOOL *stop) {
                                 if ([value isKindOfClass:[NSDictionary class]]) {
                                     NSDictionary * dictionary = (NSDictionary*)value;
                                     Tweet * tweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
                                     [tweet setValuesForKeysWithDictionary:dictionary];
-                                    [resultsArray addObject:tweet];
+                                    
+                                    // remember the maxId for the next call
+                                    if ((idx == jsonArray.count - 1) && (tweet.id_str.length > 1)) {
+                                        STSSettingsManager * settingsManager = [STSSettingsManager sharedInstance];
+                                        [settingsManager setMaximumTweetIdFromPreviousFetch:tweet.id_str];
+                                    }
                                 }
-                            }
-                        [[STCDataManager sharedManager] saveContext];
+                            }];
+                            [[STCDataManager sharedManager] saveContext];
                         }
                     }
                     else  {
@@ -181,98 +215,10 @@ static NSOperationQueue * requestOperationQueue;
             else {
                 err = [connectionError copy];
             }
-            responseBlock(resultsArray, err);
-
+            
+            responseBlock(err);
         }];
-    
-    
-//        NSURLRequest * urlRequest = [twitterRequest preparedURLRequest];
-    
-//        [NSURLConnection sendAsynchronousRequest:urlRequest queue:requestOperationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//            if ((nil != response) && (nil == connectionError)) {
-//                if (nil != data) {
-//                    NSError * jsonDeserializationError = nil;
-//                    id obj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDeserializationError];
-//                    if (nil == jsonDeserializationError) {
-//                        if ([obj isKindOfClass:[NSArray class]]) {
-//                            NSArray * jsonArray = (NSArray*)obj;
-//                            NSLog(@"%@", jsonArray);
-//                        }
-//                    }
-//                    else  {
-//                        err = [jsonDeserializationError copy];
-//                    }
-//                }
-//            }
-//            else {
-//                err = [connectionError copy];
-//            }
-//            responseBlock(resultsArray, err);
-//        }];
-    
-        return;
-        
-//        Tweet * firstTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
-//        firstTweet.text = @"how exciting, my very first tweet!";
-//        firstTweet.id_str = @"abc123myfirsttweet";
-//        firstTweet.created_at = [NSDate date];
-//        firstTweet.favourite_count = @4;
-//        
-//        [resultsArray addObject:firstTweet];
-//        
-//        Tweet * secondTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
-//        secondTweet.text = @"it's still kinda fun";
-//        secondTweet.id_str = @"abcxyzmysecondtweet";
-//        secondTweet.created_at = [NSDate date];
-//        secondTweet.favourite_count = @13;
-//        
-//        [resultsArray addObject:secondTweet];
-//        
-//        [[STCDataManager sharedManager] saveContext];
-//    }
-//    else {
-//        // fake that the favorite count has been increased by others
-//        for (Tweet * tweet in previousTweets) {
-//            tweet.favourite_count = @([tweet.favourite_count integerValue] + 1);
-//        }
-//        
-//        // what is the date of the latest tweet?
-//        
-//        static NSDateFormatter * dateFormatter = nil;
-//        if (nil == dateFormatter) {
-//            dateFormatter = [[NSDateFormatter alloc]init];
-//            [dateFormatter setDateFormat:@"yyyy/MMM/d[hh.mm.ss.SSSSSS]"];
-//        }
-//        
-//        Tweet * latestTweet = previousTweets.firstObject;
-//        NSDate * latestTweetDate = latestTweet.created_at;
-//        
-//        BOOL dateIsStale = [self firstDate:latestTweetDate isGreaterThanSecondDate:date  byMoreThanXMinutes:9];
-//        if (dateIsStale) {
-//            Tweet * firstTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
-//            firstTweet.created_at = [NSDate date];
-//            NSString * dateString = [dateFormatter stringFromDate:firstTweet.created_at];
-//            firstTweet.text = [NSString stringWithFormat:@"One more tweet sent at: %@", dateString];
-//            firstTweet.id_str = dateString;
-//            
-//            
-//            [resultsArray addObject:firstTweet];
-//            
-//            Tweet * secondTweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
-//            secondTweet.created_at = [NSDate date];
-//            dateString = [dateFormatter stringFromDate:secondTweet.created_at];
-//            secondTweet.text = [NSString stringWithFormat:@"And another tweet sent at: %@", dateString];
-//            secondTweet.id_str = dateString;
-//            
-//            
-//            [resultsArray addObject:secondTweet];
-//            
-//            [[STCDataManager sharedManager] saveContext];
-//        }
-//    }
-//    
-//    NSArray * value = [NSArray arrayWithArray:resultsArray];
-//    responseBlock(value, err);
+    }
 }
 
 + (void) postTweetText:(NSString*)tweetText responseBlock:(WebServiceLoginResponseBlock)responseBlock; {

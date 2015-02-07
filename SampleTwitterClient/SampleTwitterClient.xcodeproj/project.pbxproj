@@ -30,6 +30,7 @@
 		F6D641991A855E5700AD96EA /* twitter_data.json in Resources */ = {isa = PBXBuildFile; fileRef = F6D641971A855A0E00AD96EA /* twitter_data.json */; };
 		F6D6419F1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D6419E1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m */; };
 		F6D641A21A85671A00AD96EA /* JGCBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641A11A85671A00AD96EA /* JGCBaseModel.m */; };
+		F6D641A51A85FA7F00AD96EA /* STSSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641A41A85FA7F00AD96EA /* STSSettingsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		F6D6419E1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+JGCJSONDateSerialization.m"; sourceTree = "<group>"; };
 		F6D641A01A85671A00AD96EA /* JGCBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCBaseModel.h; sourceTree = "<group>"; };
 		F6D641A11A85671A00AD96EA /* JGCBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCBaseModel.m; sourceTree = "<group>"; };
+		F6D641A31A85FA7F00AD96EA /* STSSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSSettingsManager.h; sourceTree = "<group>"; };
+		F6D641A41A85FA7F00AD96EA /* STSSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSSettingsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,17 +135,17 @@
 			name = categories;
 			sourceTree = "<group>";
 		};
-		F663A3641A7B27A10047ACDE /* view */ = {
+		F663A3641A7B27A10047ACDE /* views */ = {
 			isa = PBXGroup;
 			children = (
 				F663A35C1A7B1FF00047ACDE /* STCTableViewCell.h */,
 				F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */,
 				F663A3621A7B27580047ACDE /* STCTableViewCell.xib */,
 			);
-			name = view;
+			name = views;
 			sourceTree = "<group>";
 		};
-		F663A3651A7B27AD0047ACDE /* controllers */ = {
+		F663A3651A7B27AD0047ACDE /* view_controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F683A0941A7AD61100977E6F /* LoginViewController.h */,
@@ -152,7 +155,7 @@
 				F663A3661A7B2EDD0047ACDE /* PostTweetViewController.h */,
 				F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */,
 			);
-			name = controllers;
+			name = view_controllers;
 			sourceTree = "<group>";
 		};
 		F683A0561A7AB58600977E6F = {
@@ -179,8 +182,8 @@
 			children = (
 				F663A3581A7B06AD0047ACDE /* categories */,
 				F663A3571A7AFCEE0047ACDE /* model */,
-				F663A3641A7B27A10047ACDE /* view */,
-				F663A3651A7B27AD0047ACDE /* controllers */,
+				F663A3641A7B27A10047ACDE /* views */,
+				F663A3651A7B27AD0047ACDE /* view_controllers */,
 				F683A0661A7AB58600977E6F /* AppDelegate.h */,
 				F683A0671A7AB58600977E6F /* AppDelegate.m */,
 				F683A0721A7AB58600977E6F /* Main.storyboard */,
@@ -189,6 +192,8 @@
 				F683A0621A7AB58600977E6F /* Supporting Files */,
 				F683A09A1A7ADE7500977E6F /* STCGlobals.h */,
 				F683A09B1A7ADE7500977E6F /* STCGlobals.m */,
+				F6D641A31A85FA7F00AD96EA /* STSSettingsManager.h */,
+				F6D641A41A85FA7F00AD96EA /* STSSettingsManager.m */,
 			);
 			path = SampleTwitterClient;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */,
 				F683A06E1A7AB58600977E6F /* MasterViewController.m in Sources */,
 				F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */,
+				F6D641A51A85FA7F00AD96EA /* STSSettingsManager.m in Sources */,
 				F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */,
 				F683A0961A7AD61100977E6F /* LoginViewController.m in Sources */,
 				F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */,

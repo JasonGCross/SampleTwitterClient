@@ -48,7 +48,7 @@
     [super viewWillAppear:animated];
     
     NSDate * date = [NSDate date];
-    [STCServiceLayer fetchTweetsSinceDate:date responseBlock:^(NSArray *tweets, NSError *error) {
+    [STCServiceLayer fetchTweetsSinceDate:date responseBlock:^(NSError *error) {
         if (nil != error) {
             [UIAlertView showWithError:error];
         }

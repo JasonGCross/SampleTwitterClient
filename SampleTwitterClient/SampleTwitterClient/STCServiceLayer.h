@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^WebServiceLoginResponseBlock) (BOOL success, NSError * error);
-typedef void (^TweetsResponseBlock) (NSArray* tweets, NSError* error);
+typedef void (^TweetsResponseBlock) (NSError* error);
 
 @interface STCServiceLayer : NSObject
 
