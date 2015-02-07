@@ -82,39 +82,6 @@
     }];
 }
 
-- (void)testFetchingLatestTweets {
-    XCTestExpectation * expectation = [self expectationWithDescription:@"Testing fetching latest tweets"];
-    
-    NSDate * date;
-    NSDateComponents * components = [[NSDateComponents alloc]init];
-    components.year = 2000;
-    components.month = 1;
-    components.day = 1;
-    NSCalendar * calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    date = [calendar dateFromComponents:components];
-    
-    [STCServiceLayer fetchTweetsSinceDate:date responseBlock:^(NSArray *tweets, NSError *error) {
-        if (tweets.count < 1) {
-            XCTFail(@"No tweets returned");
-        }
-        else if (nil != error) {
-            XCTFail(@"unexpected error fetching tweets");
-        }
-        else {
-            id obj = tweets.firstObject;
-            XCTAssertNotNil(obj);
-            XCTAssertTrue([obj isKindOfClass:[Tweet class]]);
-            [expectation fulfill];
-        }
-    }];
-    
-    [self waitForExpectationsWithTimeout:3.0 handler:^(NSError *error) {
-        if (nil != error) {
-            XCTFail(@"Login timed out");
-        }
-    }];
-}
-
 - (void) testDateDifferences {
     NSCalendar * calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     

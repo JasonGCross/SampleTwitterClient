@@ -162,7 +162,15 @@ static NSOperationQueue * requestOperationQueue;
                     if (nil == jsonDeserializationError) {
                         if ([obj isKindOfClass:[NSArray class]]) {
                             NSArray * jsonArray = (NSArray*)obj;
-                            NSLog(@"%@", jsonArray);
+                            for (id value in jsonArray) {
+                                if ([value isKindOfClass:[NSDictionary class]]) {
+                                    NSDictionary * dictionary = (NSDictionary*)value;
+                                    Tweet * tweet = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
+                                    [tweet setValuesForKeysWithDictionary:dictionary];
+                                    [resultsArray addObject:tweet];
+                                }
+                            }
+                        [[STCDataManager sharedManager] saveContext];
                         }
                     }
                     else  {
