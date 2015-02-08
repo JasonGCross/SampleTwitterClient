@@ -18,8 +18,19 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * profile_image_url;
 @property (nonatomic, retain) NSString * screen_name;
-@property (nonatomic, retain) NSData * profile_image_data;
-@property (nonatomic, retain) UIImage* profile_image_object;
-@property (nonatomic, retain) Tweet *user_tweets;
+@property (nonatomic, retain) UIImage* profile_image;
+@property (nonatomic, retain) NSSet * user_tweets;
 
+// expose for testing
++ (User*) matchingOrNewlyCreatedUserForSerializedUser:(NSDictionary*)serializedUser
+                                 managedObjectContext:(NSManagedObjectContext*)context;
+@end
+
+
+
+@interface User (STSCoreDataGeneratedAccessors)
+- (void)addUser_tweetsObject:(NSManagedObject*)value;
+- (void)removeUser_tweetsObject:(NSManagedObject*)value;
+- (void)addUser_tweets:(NSSet*)value;
+- (void)removeUser_tweets:(NSSet*)value;
 @end

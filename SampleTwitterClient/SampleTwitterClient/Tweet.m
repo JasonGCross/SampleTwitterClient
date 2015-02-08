@@ -86,14 +86,15 @@
     else if ([value isKindOfClass:[NSDictionary class]]) {
         NSDictionary * dictionary = (NSDictionary*)value;
         NSManagedObjectContext * context = [self managedObjectContext];
-        NSEntityDescription * entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-        User * user = [[User alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
-        [user setValuesForKeysWithDictionary:dictionary];
+        User * user = [User matchingOrNewlyCreatedUserForSerializedUser:dictionary
+                                                   managedObjectContext:context];
+        [user addUser_tweetsObject:self];
         [self willChangeValueForKey:key];
         [self setPrimitiveValue:user forKey:key];
         [self didChangeValueForKey:key];
     }
-
 }
+
+
 
 @end

@@ -13,14 +13,13 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="profile_image_data" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="profile_image_object" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="profile_image" optional="YES" attributeType="Transformable" valueTransformerName="UIImageToDataTransformer" syncable="YES"/>
         <attribute name="profile_image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="screen_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user_tweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="user" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <elements>
         <element name="Tweet" positionX="261" positionY="189" width="128" height="133"/>
-        <element name="User" positionX="36" positionY="189" width="128" height="133"/>
+        <element name="User" positionX="36" positionY="189" width="128" height="120"/>
     </elements>
 </model>

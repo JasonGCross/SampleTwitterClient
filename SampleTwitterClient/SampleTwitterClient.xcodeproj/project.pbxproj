@@ -10,6 +10,7 @@
 		F663A35E1A7B1FF00047ACDE /* STCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */; };
 		F663A3631A7B27580047ACDE /* STCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F663A3621A7B27580047ACDE /* STCTableViewCell.xib */; };
 		F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */; };
+		F6755A391A880BBE00B49838 /* UIImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6755A381A880BBE00B49838 /* UIImageToDataTransformer.m */; };
 		F683A0651A7AB58600977E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0641A7AB58600977E6F /* main.m */; };
 		F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0671A7AB58600977E6F /* AppDelegate.m */; };
 		F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */; };
@@ -60,6 +61,8 @@
 		F663A3621A7B27580047ACDE /* STCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STCTableViewCell.xib; sourceTree = "<group>"; };
 		F663A3661A7B2EDD0047ACDE /* PostTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTweetViewController.h; sourceTree = "<group>"; };
 		F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTweetViewController.m; sourceTree = "<group>"; };
+		F6755A371A880BBE00B49838 /* UIImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageToDataTransformer.h; sourceTree = "<group>"; };
+		F6755A381A880BBE00B49838 /* UIImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageToDataTransformer.m; sourceTree = "<group>"; };
 		F683A05F1A7AB58600977E6F /* SampleTwitterClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTwitterClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F683A0631A7AB58600977E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F683A0641A7AB58600977E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				F683A08E1A7ACA0F00977E6F /* STCServiceLayer.h */,
 				F683A08F1A7ACA0F00977E6F /* STCServiceLayer.m */,
 				F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */,
+				F6755A371A880BBE00B49838 /* UIImageToDataTransformer.h */,
+				F6755A381A880BBE00B49838 /* UIImageToDataTransformer.m */,
 				F6D641D61A87639700AD96EA /* Tweet.h */,
 				F6D641D71A87639700AD96EA /* Tweet.m */,
 				F6D641D31A87639700AD96EA /* User.h */,
@@ -409,6 +414,7 @@
 				F683A06E1A7AB58600977E6F /* MasterViewController.m in Sources */,
 				F6D641CC1A875F0400AD96EA /* Reachability.m in Sources */,
 				F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */,
+				F6755A391A880BBE00B49838 /* UIImageToDataTransformer.m in Sources */,
 				F6D641C41A875D6800AD96EA /* NSData+MKBase64.m in Sources */,
 				F6D641C71A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m in Sources */,
 				F6D641A51A85FA7F00AD96EA /* STSSettingsManager.m in Sources */,

@@ -13,6 +13,8 @@
 #import "Tweet.h"
 #import "NSJSONSerialization+JGCJSONDateSerialization.h"
 #import <CoreData/CoreData.h>
+#import "User.h"
+
 
 
 @interface SampleTwitterClientTests : XCTestCase
@@ -296,6 +298,75 @@
             }
         }
     }
+}
+
+- (void) testNormalizationOfUsers {
+    NSDictionary * serializedUser = @{
+                                      @"name" : @"Tester Morris",
+                                      @"screen_name" : @"testerMorris123",
+                                      @"profile_image_url" : @"http://test.com/testerMorris_large.jpg"
+                                      };
+    
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSEntityDescription * entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchLimit:20];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"screen_name like \"testerMorris123\""];
+    [fetchRequest setPredicate:predicate];
+    NSError * fetchError = nil;
+    
+    NSArray * matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
+    XCTAssertNil(fetchError);
+    if (nil == fetchError) {
+        XCTAssertTrue(matchingUsers.count == 0);
+    }
+
+    // now insert a new user and check the count
+    User * user = [User matchingOrNewlyCreatedUserForSerializedUser:serializedUser managedObjectContext:context];
+    NSError * saveError;
+    [context save:&saveError];
+    XCTAssertNil(saveError);
+    
+    matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
+    XCTAssertNil(fetchError);
+    if (nil == fetchError) {
+        XCTAssertTrue(matchingUsers.count == 1);
+        User * duplicate = matchingUsers.firstObject;
+        XCTAssertNotNil(duplicate);
+        XCTAssertTrue([duplicate.screen_name isEqualToString:user.screen_name]);
+    }
+
+    // repeating the "insert" should have no change on the number of users in the data base
+    user = [User matchingOrNewlyCreatedUserForSerializedUser:serializedUser managedObjectContext:context];
+    saveError = nil;
+    [context save:&saveError];
+    XCTAssertNil(saveError);
+    
+    matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
+    XCTAssertNil(fetchError);
+    if (nil == fetchError) {
+        XCTAssertTrue(matchingUsers.count == 1);
+        User * duplicate = matchingUsers.firstObject;
+        XCTAssertNotNil(duplicate);
+        XCTAssertTrue([duplicate.screen_name isEqualToString:user.screen_name]);
+    }
+
+    // once more for over-kill
+    user = [User matchingOrNewlyCreatedUserForSerializedUser:serializedUser managedObjectContext:context];
+    saveError = nil;
+    [context save:&saveError];
+    XCTAssertNil(saveError);
+    
+    matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
+    XCTAssertNil(fetchError);
+    if (nil == fetchError) {
+        XCTAssertTrue(matchingUsers.count == 1);
+        User * duplicate = matchingUsers.firstObject;
+        XCTAssertNotNil(duplicate);
+        XCTAssertTrue([duplicate.screen_name isEqualToString:user.screen_name]);
+    }
+
 }
 
 @end
