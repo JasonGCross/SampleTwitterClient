@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F663A3561A7AFCE20047ACDE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3551A7AFCE20047ACDE /* User.m */; };
 		F663A35E1A7B1FF00047ACDE /* STCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */; };
-		F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3601A7B26AE0047ACDE /* Tweet.m */; };
 		F663A3631A7B27580047ACDE /* STCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F663A3621A7B27580047ACDE /* STCTableViewCell.xib */; };
 		F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */; };
 		F683A0651A7AB58600977E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F683A0641A7AB58600977E6F /* main.m */; };
@@ -42,6 +40,8 @@
 		F6D641CC1A875F0400AD96EA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641CB1A875F0400AD96EA /* Reachability.m */; };
 		F6D641CF1A87605200AD96EA /* STSNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641CE1A87605200AD96EA /* STSNetworkEngine.m */; };
 		F6D641D21A87614200AD96EA /* JGCSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641D11A87614200AD96EA /* JGCSmartTableViewCell.m */; };
+		F6D641D51A87639700AD96EA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641D41A87639700AD96EA /* User.m */; };
+		F6D641D81A87639700AD96EA /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641D71A87639700AD96EA /* Tweet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F663A3541A7AFCE20047ACDE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		F663A3551A7AFCE20047ACDE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F663A35C1A7B1FF00047ACDE /* STCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCTableViewCell.h; sourceTree = "<group>"; };
 		F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCTableViewCell.m; sourceTree = "<group>"; };
-		F663A35F1A7B26AE0047ACDE /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
-		F663A3601A7B26AE0047ACDE /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		F663A3621A7B27580047ACDE /* STCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STCTableViewCell.xib; sourceTree = "<group>"; };
 		F663A3661A7B2EDD0047ACDE /* PostTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTweetViewController.h; sourceTree = "<group>"; };
 		F663A3671A7B2EDD0047ACDE /* PostTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTweetViewController.m; sourceTree = "<group>"; };
@@ -120,6 +116,10 @@
 		F6D641CE1A87605200AD96EA /* STSNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSNetworkEngine.m; sourceTree = "<group>"; };
 		F6D641D01A87614200AD96EA /* JGCSmartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCSmartTableViewCell.h; sourceTree = "<group>"; };
 		F6D641D11A87614200AD96EA /* JGCSmartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCSmartTableViewCell.m; sourceTree = "<group>"; };
+		F6D641D31A87639700AD96EA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F6D641D41A87639700AD96EA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F6D641D61A87639700AD96EA /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		F6D641D71A87639700AD96EA /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,12 +149,12 @@
 				F683A08E1A7ACA0F00977E6F /* STCServiceLayer.h */,
 				F683A08F1A7ACA0F00977E6F /* STCServiceLayer.m */,
 				F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */,
+				F6D641D61A87639700AD96EA /* Tweet.h */,
+				F6D641D71A87639700AD96EA /* Tweet.m */,
+				F6D641D31A87639700AD96EA /* User.h */,
+				F6D641D41A87639700AD96EA /* User.m */,
 				F6D641A01A85671A00AD96EA /* JGCBaseModel.h */,
 				F6D641A11A85671A00AD96EA /* JGCBaseModel.m */,
-				F663A35F1A7B26AE0047ACDE /* Tweet.h */,
-				F663A3601A7B26AE0047ACDE /* Tweet.m */,
-				F663A3541A7AFCE20047ACDE /* User.h */,
-				F663A3551A7AFCE20047ACDE /* User.m */,
 				F6D641CD1A87605200AD96EA /* STSNetworkEngine.h */,
 				F6D641CE1A87605200AD96EA /* STSNetworkEngine.m */,
 			);
@@ -403,15 +403,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D641D51A87639700AD96EA /* User.m in Sources */,
 				F6D641A21A85671A00AD96EA /* JGCBaseModel.m in Sources */,
 				F683A09C1A7ADE7500977E6F /* STCGlobals.m in Sources */,
-				F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */,
 				F683A06E1A7AB58600977E6F /* MasterViewController.m in Sources */,
 				F6D641CC1A875F0400AD96EA /* Reachability.m in Sources */,
 				F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */,
 				F6D641C41A875D6800AD96EA /* NSData+MKBase64.m in Sources */,
 				F6D641C71A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m in Sources */,
 				F6D641A51A85FA7F00AD96EA /* STSSettingsManager.m in Sources */,
+				F6D641D81A87639700AD96EA /* Tweet.m in Sources */,
 				F6D641C81A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				F6D641D21A87614200AD96EA /* JGCSmartTableViewCell.m in Sources */,
 				F6D641A91A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.m in Sources */,
@@ -421,7 +422,6 @@
 				F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */,
 				F6D641CF1A87605200AD96EA /* STSNetworkEngine.m in Sources */,
 				F6D6419F1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m in Sources */,
-				F663A3561A7AFCE20047ACDE /* User.m in Sources */,
 				F683A0901A7ACA0F00977E6F /* STCServiceLayer.m in Sources */,
 				F683A0651A7AB58600977E6F /* main.m in Sources */,
 				F6D641C51A875D6800AD96EA /* NSDate+RFC1123.m in Sources */,

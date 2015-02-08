@@ -2,20 +2,22 @@
 //  User.m
 //  SampleTwitterClient
 //
-//  Created by Jason Cross on 1/29/15.
+//  Created by Jason Cross on 2/8/15.
 //  Copyright (c) 2015 Jason Cross. All rights reserved.
 //
 
 #import "User.h"
+#import "Tweet.h"
 
 
 @implementation User
 
-@dynamic screen_name;
-@dynamic profile_image_url;
 @dynamic name;
+@dynamic profile_image_url;
+@dynamic screen_name;
 @dynamic profile_image_data;
 @dynamic profile_image_object;
+@dynamic user_tweet;
 
 
 - (void)willSave {
