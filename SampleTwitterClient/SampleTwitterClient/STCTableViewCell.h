@@ -12,6 +12,7 @@
 @class Tweet;
 
 @interface STCTableViewCell : JGCSmartTableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel* tweetTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel* tweetCreationDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel* tweetFavoritesCountLabel;

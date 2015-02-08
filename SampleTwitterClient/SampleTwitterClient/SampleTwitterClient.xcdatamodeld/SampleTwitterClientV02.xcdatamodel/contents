@@ -8,7 +8,7 @@
         <attribute name="id_str" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="retweet_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="user_tweet" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="user_tweets" inverseEntity="User" syncable="YES"/>
         <userInfo/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -17,10 +17,10 @@
         <attribute name="profile_image_object" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="profile_image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="screen_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user_tweet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="user" inverseEntity="Tweet" syncable="YES"/>
+        <relationship name="user_tweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="user" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <elements>
         <element name="Tweet" positionX="261" positionY="189" width="128" height="133"/>
-        <element name="User" positionX="43" positionY="197" width="128" height="133"/>
+        <element name="User" positionX="36" positionY="189" width="128" height="133"/>
     </elements>
 </model>

@@ -17,7 +17,7 @@
 @dynamic screen_name;
 @dynamic profile_image_data;
 @dynamic profile_image_object;
-@dynamic user_tweet;
+@dynamic user_tweets;
 
 
 - (void)willSave {

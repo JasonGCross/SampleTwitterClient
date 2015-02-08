@@ -23,7 +23,6 @@ extern NSString* const kNotificationNameNewTweetPosted;
 extern NSString* const kNotificationNameTwitterLoginSuccess;
 
 #pragma mark - miscellaneous string constants
-extern NSString* const kTwitterCellReuseIdentifier;
 extern NSString* const kTwitterAPIBasePath;
 
 

@@ -33,9 +33,9 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.managedObjectContext = [[STCDataManager sharedManager]managedObjectContext];
     
-
-    [self.tableView registerNib:[UINib nibWithNibName:@"STCTableViewCell" bundle:[NSBundle mainBundle]]
-         forCellReuseIdentifier:kTwitterCellReuseIdentifier];
+    UINib * nib = [STCTableViewCell nib];
+    NSString * cellIdentifier = [STCTableViewCell cellIdentifier];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
     UIBarButtonItem * logoutButton = [[UIBarButtonItem alloc]initWithTitle:@"logout" style:UIBarButtonItemStyleDone target:self action:@selector(logout)];
     self.navigationItem.leftBarButtonItem = logoutButton;
@@ -100,7 +100,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    STCTableViewCell *cell = (STCTableViewCell*)[tableView dequeueReusableCellWithIdentifier:kTwitterCellReuseIdentifier forIndexPath:indexPath];
+    STCTableViewCell *cell = [STCTableViewCell cellForTableView:tableView];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }

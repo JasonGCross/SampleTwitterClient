@@ -20,6 +20,6 @@
 @property (nonatomic, retain) NSString * screen_name;
 @property (nonatomic, retain) NSData * profile_image_data;
 @property (nonatomic, retain) UIImage* profile_image_object;
-@property (nonatomic, retain) Tweet *user_tweet;
+@property (nonatomic, retain) Tweet *user_tweets;
 
 @end
