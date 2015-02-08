@@ -228,6 +228,26 @@
     XCTAssertEqualObjects(checkinDate, checkindateSubString, @"the date strings should be equal");
 }
 
+- (void) testTwitterDateFormat {
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:06];
+    [comps setMonth:02];
+    [comps setYear:2015];
+    [comps setHour:03];
+    [comps setMinute:30];
+    [comps setSecond:57];
+    [comps setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *date = [gregorian dateFromComponents:comps];
+    
+    NSString *dateString = [NSJSONSerialization jgc_convertDateToTwitterJsonFormat:date];
+    XCTAssertNotNil(dateString, @"dateString should not be nil");
+    XCTAssertTrue([dateString isEqualToString:@"Fri Feb 06 03:30:57 +0000 2015"], @"date string is not what it should be");
+    
+    NSDate * roundTripDate = [NSJSONSerialization jgc_convertJasonDateStringToNSDate:dateString];
+    XCTAssertTrue([roundTripDate isEqualToDate:date]);
+}
+
 #pragma mark - JSON model objects
 
 - (void) testDeserializingJSON {
@@ -265,9 +285,9 @@
                 XCTAssertTrue([deserializedDateComponents year] == 2015);
                 XCTAssertTrue([deserializedDateComponents month] == 2);
                 XCTAssertTrue([deserializedDateComponents day] == 6);
-//                XCTAssertTrue([deserializedDateComponents hour] == 3);
-//                XCTAssertTrue([deserializedDateComponents minute] == 30);
-//                XCTAssertTrue([deserializedDateComponents second] == 57);
+                XCTAssertTrue([deserializedDateComponents hour] == 3);
+                XCTAssertTrue([deserializedDateComponents minute] == 30);
+                XCTAssertTrue([deserializedDateComponents second] == 57);
                 
                 // other (simpler) properties
                 XCTAssertTrue([firstTweet.id_str isEqualToString:@"563540322089566208"]);
