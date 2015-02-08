@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F663A3561A7AFCE20047ACDE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3551A7AFCE20047ACDE /* User.m */; };
-		F663A35B1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A35A1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m */; };
 		F663A35E1A7B1FF00047ACDE /* STCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */; };
 		F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = F663A3601A7B26AE0047ACDE /* Tweet.m */; };
 		F663A3631A7B27580047ACDE /* STCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F663A3621A7B27580047ACDE /* STCTableViewCell.xib */; };
@@ -31,6 +30,18 @@
 		F6D6419F1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D6419E1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m */; };
 		F6D641A21A85671A00AD96EA /* JGCBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641A11A85671A00AD96EA /* JGCBaseModel.m */; };
 		F6D641A51A85FA7F00AD96EA /* STSSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641A41A85FA7F00AD96EA /* STSSettingsManager.m */; };
+		F6D641A91A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641A81A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.m */; };
+		F6D641B21A875D5000AD96EA /* MKNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641AE1A875D5000AD96EA /* MKNetworkEngine.m */; };
+		F6D641B31A875D5000AD96EA /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641B11A875D5000AD96EA /* MKNetworkOperation.m */; };
+		F6D641C41A875D6800AD96EA /* NSData+MKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641B81A875D6800AD96EA /* NSData+MKBase64.m */; };
+		F6D641C51A875D6800AD96EA /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641BA1A875D6800AD96EA /* NSDate+RFC1123.m */; };
+		F6D641C61A875D6800AD96EA /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641BC1A875D6800AD96EA /* NSDictionary+RequestEncoding.m */; };
+		F6D641C71A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641BE1A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m */; };
+		F6D641C81A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641C01A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.m */; };
+		F6D641C91A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641C21A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.m */; };
+		F6D641CC1A875F0400AD96EA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641CB1A875F0400AD96EA /* Reachability.m */; };
+		F6D641CF1A87605200AD96EA /* STSNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641CE1A87605200AD96EA /* STSNetworkEngine.m */; };
+		F6D641D21A87614200AD96EA /* JGCSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D641D11A87614200AD96EA /* JGCSmartTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +57,6 @@
 /* Begin PBXFileReference section */
 		F663A3541A7AFCE20047ACDE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F663A3551A7AFCE20047ACDE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		F663A3591A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
-		F663A35A1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
 		F663A35C1A7B1FF00047ACDE /* STCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCTableViewCell.h; sourceTree = "<group>"; };
 		F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCTableViewCell.m; sourceTree = "<group>"; };
 		F663A35F1A7B26AE0047ACDE /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -85,6 +94,32 @@
 		F6D641A11A85671A00AD96EA /* JGCBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCBaseModel.m; sourceTree = "<group>"; };
 		F6D641A31A85FA7F00AD96EA /* STSSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSSettingsManager.h; sourceTree = "<group>"; };
 		F6D641A41A85FA7F00AD96EA /* STSSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSSettingsManager.m; sourceTree = "<group>"; };
+		F6D641A61A8724B600AD96EA /* SampleTwitterClientV02.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleTwitterClientV02.xcdatamodel; sourceTree = "<group>"; };
+		F6D641A71A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+JGCErrorDictionaryForDescriptionAndReason.h"; sourceTree = "<group>"; };
+		F6D641A81A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+JGCErrorDictionaryForDescriptionAndReason.m"; sourceTree = "<group>"; };
+		F6D641AD1A875D5000AD96EA /* MKNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKNetworkEngine.h; path = MKNetworkKit/MKNetworkEngine.h; sourceTree = "<group>"; };
+		F6D641AE1A875D5000AD96EA /* MKNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKNetworkEngine.m; path = MKNetworkKit/MKNetworkEngine.m; sourceTree = "<group>"; };
+		F6D641AF1A875D5000AD96EA /* MKNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKNetworkKit.h; path = MKNetworkKit/MKNetworkKit.h; sourceTree = "<group>"; };
+		F6D641B01A875D5000AD96EA /* MKNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKNetworkOperation.h; path = MKNetworkKit/MKNetworkOperation.h; sourceTree = "<group>"; };
+		F6D641B11A875D5000AD96EA /* MKNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKNetworkOperation.m; path = MKNetworkKit/MKNetworkOperation.m; sourceTree = "<group>"; };
+		F6D641B71A875D6800AD96EA /* NSData+MKBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+MKBase64.h"; path = "MKNetworkKit/Categories/NSData+MKBase64.h"; sourceTree = "<group>"; };
+		F6D641B81A875D6800AD96EA /* NSData+MKBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MKBase64.m"; path = "MKNetworkKit/Categories/NSData+MKBase64.m"; sourceTree = "<group>"; };
+		F6D641B91A875D6800AD96EA /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+RFC1123.h"; path = "MKNetworkKit/Categories/NSDate+RFC1123.h"; sourceTree = "<group>"; };
+		F6D641BA1A875D6800AD96EA /* NSDate+RFC1123.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+RFC1123.m"; path = "MKNetworkKit/Categories/NSDate+RFC1123.m"; sourceTree = "<group>"; };
+		F6D641BB1A875D6800AD96EA /* NSDictionary+RequestEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+RequestEncoding.h"; path = "MKNetworkKit/Categories/NSDictionary+RequestEncoding.h"; sourceTree = "<group>"; };
+		F6D641BC1A875D6800AD96EA /* NSDictionary+RequestEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+RequestEncoding.m"; path = "MKNetworkKit/Categories/NSDictionary+RequestEncoding.m"; sourceTree = "<group>"; };
+		F6D641BD1A875D6800AD96EA /* NSString+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MKNetworkKitAdditions.h"; path = "MKNetworkKit/Categories/NSString+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		F6D641BE1A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MKNetworkKitAdditions.m"; path = "MKNetworkKit/Categories/NSString+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		F6D641BF1A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+MKNetworkKitAdditions.h"; path = "MKNetworkKit/Categories/UIAlertView+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		F6D641C01A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+MKNetworkKitAdditions.m"; path = "MKNetworkKit/Categories/UIAlertView+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		F6D641C11A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+MKNetworkKitAdditions.h"; path = "MKNetworkKit/Categories/UIImageView+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		F6D641C21A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+MKNetworkKitAdditions.m"; path = "MKNetworkKit/Categories/UIImageView+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		F6D641CA1A875F0400AD96EA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = MKNetworkKit/Categories/Reachability.h; sourceTree = "<group>"; };
+		F6D641CB1A875F0400AD96EA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = MKNetworkKit/Categories/Reachability.m; sourceTree = "<group>"; };
+		F6D641CD1A87605200AD96EA /* STSNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSNetworkEngine.h; sourceTree = "<group>"; };
+		F6D641CE1A87605200AD96EA /* STSNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSNetworkEngine.m; sourceTree = "<group>"; };
+		F6D641D01A87614200AD96EA /* JGCSmartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCSmartTableViewCell.h; sourceTree = "<group>"; };
+		F6D641D11A87614200AD96EA /* JGCSmartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCSmartTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +155,8 @@
 				F663A3601A7B26AE0047ACDE /* Tweet.m */,
 				F663A3541A7AFCE20047ACDE /* User.h */,
 				F663A3551A7AFCE20047ACDE /* User.m */,
+				F6D641CD1A87605200AD96EA /* STSNetworkEngine.h */,
+				F6D641CE1A87605200AD96EA /* STSNetworkEngine.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -127,10 +164,10 @@
 		F663A3581A7B06AD0047ACDE /* categories */ = {
 			isa = PBXGroup;
 			children = (
-				F663A3591A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.h */,
-				F663A35A1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m */,
 				F6D6419D1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.h */,
 				F6D6419E1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m */,
+				F6D641A71A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.h */,
+				F6D641A81A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -138,6 +175,8 @@
 		F663A3641A7B27A10047ACDE /* views */ = {
 			isa = PBXGroup;
 			children = (
+				F6D641D01A87614200AD96EA /* JGCSmartTableViewCell.h */,
+				F6D641D11A87614200AD96EA /* JGCSmartTableViewCell.m */,
 				F663A35C1A7B1FF00047ACDE /* STCTableViewCell.h */,
 				F663A35D1A7B1FF00047ACDE /* STCTableViewCell.m */,
 				F663A3621A7B27580047ACDE /* STCTableViewCell.xib */,
@@ -180,6 +219,7 @@
 		F683A0611A7AB58600977E6F /* SampleTwitterClient */ = {
 			isa = PBXGroup;
 			children = (
+				F6D641AA1A875B4500AD96EA /* MKNetworking */,
 				F663A3581A7B06AD0047ACDE /* categories */,
 				F663A3571A7AFCEE0047ACDE /* model */,
 				F663A3641A7B27A10047ACDE /* views */,
@@ -223,6 +263,40 @@
 				F683A0831A7AB58600977E6F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6D641AA1A875B4500AD96EA /* MKNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				F6D641B41A875D5400AD96EA /* Categories */,
+				F6D641AD1A875D5000AD96EA /* MKNetworkEngine.h */,
+				F6D641AE1A875D5000AD96EA /* MKNetworkEngine.m */,
+				F6D641AF1A875D5000AD96EA /* MKNetworkKit.h */,
+				F6D641B01A875D5000AD96EA /* MKNetworkOperation.h */,
+				F6D641B11A875D5000AD96EA /* MKNetworkOperation.m */,
+				F6D641CA1A875F0400AD96EA /* Reachability.h */,
+				F6D641CB1A875F0400AD96EA /* Reachability.m */,
+			);
+			name = MKNetworking;
+			sourceTree = "<group>";
+		};
+		F6D641B41A875D5400AD96EA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F6D641B71A875D6800AD96EA /* NSData+MKBase64.h */,
+				F6D641B81A875D6800AD96EA /* NSData+MKBase64.m */,
+				F6D641B91A875D6800AD96EA /* NSDate+RFC1123.h */,
+				F6D641BA1A875D6800AD96EA /* NSDate+RFC1123.m */,
+				F6D641BB1A875D6800AD96EA /* NSDictionary+RequestEncoding.h */,
+				F6D641BC1A875D6800AD96EA /* NSDictionary+RequestEncoding.m */,
+				F6D641BD1A875D6800AD96EA /* NSString+MKNetworkKitAdditions.h */,
+				F6D641BE1A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m */,
+				F6D641BF1A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.h */,
+				F6D641C01A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.m */,
+				F6D641C11A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.h */,
+				F6D641C21A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,18 +407,29 @@
 				F683A09C1A7ADE7500977E6F /* STCGlobals.m in Sources */,
 				F663A3611A7B26AE0047ACDE /* Tweet.m in Sources */,
 				F683A06E1A7AB58600977E6F /* MasterViewController.m in Sources */,
+				F6D641CC1A875F0400AD96EA /* Reachability.m in Sources */,
 				F683A0681A7AB58600977E6F /* AppDelegate.m in Sources */,
+				F6D641C41A875D6800AD96EA /* NSData+MKBase64.m in Sources */,
+				F6D641C71A875D6800AD96EA /* NSString+MKNetworkKitAdditions.m in Sources */,
 				F6D641A51A85FA7F00AD96EA /* STSSettingsManager.m in Sources */,
+				F6D641C81A875D6800AD96EA /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
+				F6D641D21A87614200AD96EA /* JGCSmartTableViewCell.m in Sources */,
+				F6D641A91A87260100AD96EA /* NSError+JGCErrorDictionaryForDescriptionAndReason.m in Sources */,
 				F683A06B1A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld in Sources */,
 				F683A0961A7AD61100977E6F /* LoginViewController.m in Sources */,
+				F6D641B31A875D5000AD96EA /* MKNetworkOperation.m in Sources */,
 				F663A3681A7B2EDD0047ACDE /* PostTweetViewController.m in Sources */,
+				F6D641CF1A87605200AD96EA /* STSNetworkEngine.m in Sources */,
 				F6D6419F1A85624500AD96EA /* NSJSONSerialization+JGCJSONDateSerialization.m in Sources */,
 				F663A3561A7AFCE20047ACDE /* User.m in Sources */,
 				F683A0901A7ACA0F00977E6F /* STCServiceLayer.m in Sources */,
 				F683A0651A7AB58600977E6F /* main.m in Sources */,
+				F6D641C51A875D6800AD96EA /* NSDate+RFC1123.m in Sources */,
 				F683A0991A7AD82300977E6F /* STCDataManager.m in Sources */,
 				F663A35E1A7B1FF00047ACDE /* STCTableViewCell.m in Sources */,
-				F663A35B1A7B06CB0047ACDE /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
+				F6D641C61A875D6800AD96EA /* NSDictionary+RequestEncoding.m in Sources */,
+				F6D641B21A875D5000AD96EA /* MKNetworkEngine.m in Sources */,
+				F6D641C91A875D6800AD96EA /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,9 +643,10 @@
 		F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F6D641A61A8724B600AD96EA /* SampleTwitterClientV02.xcdatamodel */,
 				F683A06A1A7AB58600977E6F /* SampleTwitterClient.xcdatamodel */,
 			);
-			currentVersion = F683A06A1A7AB58600977E6F /* SampleTwitterClient.xcdatamodel */;
+			currentVersion = F6D641A61A8724B600AD96EA /* SampleTwitterClientV02.xcdatamodel */;
 			path = SampleTwitterClient.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

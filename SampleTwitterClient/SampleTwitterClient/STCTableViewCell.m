@@ -33,6 +33,12 @@ static NSDateFormatter * dateFormatter;
     // Configure the view for the selected state
 }
 
++ (NSString *)cellIdentifier {
+    static NSString* _cellIdentifier = nil;
+    _cellIdentifier = NSStringFromClass([self class]);
+    return _cellIdentifier;
+}
+
 - (void) prepareForReuse {
     [super prepareForReuse];
     self.tweetTextLabel.text = nil;

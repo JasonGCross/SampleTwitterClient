@@ -14,7 +14,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "STSSettingsManager.h"
-
+#import "NSError+JGCErrorDictionaryForDescriptionAndReason.h"
 
 
 static ACAccount * twitterAcAccount;
@@ -55,13 +55,13 @@ static NSOperationQueue * requestOperationQueue;
         result = YES;
     }
     if (!result) {
-        NSDictionary * userInfo = @{
-                                    NSLocalizedDescriptionKey : @"The username / password combination is invalid",
-                                    NSLocalizedRecoverySuggestionErrorKey : @"Ensure you have entered the username and password correctly."
-                                    };
+        NSDictionary * info = [NSError jgc_errorDictionaryForDescription:@"The username / password combination is invalid"
+                                                                  reason:@"Ensure you have entered the username and password correctly."
+                                                         underlyingError:nil];
+
         err = [NSError errorWithDomain:@"ca.jasoncross.login"
                                   code:kSampleTwitterClientErrorCodeLoginError
-                              userInfo:userInfo];
+                              userInfo:info];
     }
     
     responseBlock(result, err);
@@ -174,7 +174,12 @@ static NSOperationQueue * requestOperationQueue;
     NSArray * previousTweets = [context executeFetchRequest:fetchRequest error:&fetchError];
 
     if (nil != fetchError) {
-        err = [fetchError copy];
+        NSDictionary * info = [NSError jgc_errorDictionaryForDescription:@""
+                                                                  reason:@""
+                                                         underlyingError:fetchError];
+        err = [NSError errorWithDomain:fetchError.domain
+                                  code:fetchError.code
+                              userInfo:info];
         responseBlock(err);
     }
     else {
@@ -208,12 +213,22 @@ static NSOperationQueue * requestOperationQueue;
                         }
                     }
                     else  {
-                        err = [jsonDeserializationError copy];
+                        NSDictionary * info = [NSError jgc_errorDictionaryForDescription:@"JSON Error"
+                                                                                  reason:@"The data received from the server was not in the expected format."
+                                                                         underlyingError:jsonDeserializationError];
+                        err = [NSError errorWithDomain:jsonDeserializationError.domain
+                                                  code:jsonDeserializationError.code
+                                              userInfo:info];
                     }
                 }
             }
             else {
-                err = [connectionError copy];
+                NSDictionary * info = [NSError jgc_errorDictionaryForDescription:@"Connection Error"
+                                                                          reason:@"Check your network connections or try again later."
+                                                                 underlyingError:connectionError];
+                err = [NSError errorWithDomain:connectionError.domain
+                                          code:connectionError.code
+                                      userInfo:info];
             }
             
             responseBlock(err);
@@ -257,10 +272,10 @@ static NSOperationQueue * requestOperationQueue;
     }
     else {
         NSString * recoverySuggestion = [NSString stringWithFormat:@"Limit tweets to %i characters or less.", kMaxTwitterTextCharacterLength];
-        NSDictionary * userInfo = @{
-                                    NSLocalizedDescriptionKey : @"The tweet is too long",
-                                    NSLocalizedRecoverySuggestionErrorKey : recoverySuggestion
-                                    };
+        NSDictionary * userInfo = [NSError jgc_errorDictionaryForDescription:@"The tweet is too long"
+                                                                      reason:recoverySuggestion
+                                                             underlyingError:nil];
+  
         err = [NSError errorWithDomain:@"ca.jasoncross.posttweet"
                                   code:kSampleTwitterClientErrorCodeTweetTooLong
                               userInfo:userInfo];
