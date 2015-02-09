@@ -11,6 +11,8 @@ This project is built using Xcode 6.1. To run the app in the simulator, download
 
 After logging in, a list of tweets is shown. Only newer tweets since the last API call are fetched from the server; the rest are already cached in memory. Currently the only way to fetch new tweets is to logout (top left button) and log in again, or just restart the app.
 
+There is also a suite of unit tests which may be run.
+
 ##Technology Notes
 This project uses CoreData to cache tweets previously received by the API. It uses MKNetworkEngine for retrieving images. Rather than use a 3rd party library for authenticating and communicating with the Twitter API, the stock Apple libraries are used (Accounts framework, Social Framework).
 
