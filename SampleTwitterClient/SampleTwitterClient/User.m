@@ -35,8 +35,6 @@
         // do nothing to the image data or the image object
     }
     else {
-        // if the url has changed, we need to remove the old image data
-        self.profile_image = nil;
         [self downloadImageForImagePath:value];
     }
     
@@ -87,10 +85,14 @@
         self.networkOperation = [sharedEngine imageAtURL:url completionHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
             if (![self isFault]) {
                 self.profile_image = fetchedImage;
+                NSError * err;
+                [self.managedObjectContext save:&err];
             }
         } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
             if (![self isFault]) {
                 self.profile_image = nil;
+                NSError * err;
+                [self.managedObjectContext save:&err];
             }
         }];
         NSError * err = nil;

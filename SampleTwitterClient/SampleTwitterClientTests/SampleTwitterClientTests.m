@@ -34,7 +34,7 @@
                                               URL:nil
                                           options:nil
                                             error:NULL] ? YES : NO, @"Should be able to add in-memory store");
-    self.managedObjectContext = [[NSManagedObjectContext alloc] init];
+    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     self.managedObjectContext.persistentStoreCoordinator = psc;
 }
 
