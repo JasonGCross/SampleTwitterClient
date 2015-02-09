@@ -1,5 +1,10 @@
 # SampleTwitterClient
-proof of concept app which does not actually consume the real Twitter (or any) API.
+Proof of concept app.
+Allows the user to authenticate against the Twitter API using a single account, the developer's account.
+After login, shows a list of Tweets from the developer's account home timeline.
+Allows logging off.
+That's it! No posting of new tweets or refresh ability.
+Note that the app caches previously-retrieved tweets and only fetches any new tweets, after each login.
 
 ##How to Run
 This project is built using Xcode 6.1. To run the app in the simulator, download the source code and run. The username / password fields are currently disabled. Just press "login" to use the saved developer credentials.
