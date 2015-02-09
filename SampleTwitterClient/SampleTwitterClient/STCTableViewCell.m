@@ -65,6 +65,11 @@ static NSDateFormatter * dateFormatter;
     }
     
     self.userFullNameLabel.text = tweetData.user.name;
+    NSString * screenNameString = nil;
+    if (nil != tweetData.user.screen_name) {
+        screenNameString = [NSString stringWithFormat:@"@%@", tweetData.user.screen_name];
+    }
+    self.userScreentNameLabel.text = screenNameString;
     self.tweetTextLabel.text = tweetData.text;
     
     NSString * dateString = (nil == tweetData.created_at) ? @"" : [dateFormatter stringFromDate:tweetData.created_at];

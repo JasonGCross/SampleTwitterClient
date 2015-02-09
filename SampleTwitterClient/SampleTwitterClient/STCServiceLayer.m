@@ -129,7 +129,7 @@ static NSOperationQueue * requestOperationQueue;
 + (SLRequest *)twitterRequestSinceLatestTweet:(Tweet *)latestTweet {
     SLRequest *twitterRequest;
 
-    NSURL * url = [NSURL URLWithString:kTwitterAPIBasePath];
+    NSURL * url = [NSURL URLWithString:kTwitterAPITimelinePath];
     NSDictionary * parameters = nil;
     NSMutableDictionary * mutableParameters = [[NSMutableDictionary alloc]initWithCapacity:2];
     
@@ -168,8 +168,6 @@ static NSOperationQueue * requestOperationQueue;
     NSManagedObjectContext * context = [[STCDataManager sharedManager] managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
     NSFetchRequest *fetchRequest = [self fetchRequestForLastFetchedTweet:entity];
-    
-    // do we have any tweets yet?
     NSError * fetchError = nil;
     NSArray * previousTweets = [context executeFetchRequest:fetchRequest error:&fetchError];
 

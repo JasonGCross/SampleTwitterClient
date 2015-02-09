@@ -23,7 +23,7 @@ extern NSString* const kNotificationNameNewTweetPosted;
 extern NSString* const kNotificationNameTwitterLoginSuccess;
 
 #pragma mark - miscellaneous string constants
-extern NSString* const kTwitterAPIBasePath;
+extern NSString* const kTwitterAPITimelinePath;
 
 
 #pragma mark - class definition

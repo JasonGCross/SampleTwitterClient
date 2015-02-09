@@ -17,7 +17,7 @@ NSString* const kNotificationNameNewTweetPosted = @"NotificationNewTweetPosted";
 NSString* const kNotificationNameTwitterLoginSuccess = @"kNotificationNameTwitterLoginSuccess";
 
 #pragma mark - miscellaneous string constants
-NSString* const kTwitterAPIBasePath = @"https://api.twitter.com/1.1/statuses/home_timeline.json";
+NSString* const kTwitterAPITimelinePath = @"https://api.twitter.com/1.1/statuses/home_timeline.json";
 
 
 #pragma mark - class implementation

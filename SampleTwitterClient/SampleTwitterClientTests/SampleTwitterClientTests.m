@@ -279,17 +279,23 @@
                 [firstTweet setValuesForKeysWithDictionary:firstTweetDictionary];
                 
                 // check the creation date
-                NSDate * deserializedDate = firstTweet.created_at;
                 NSCalendar *gregorian = [[NSCalendar alloc]
                                          initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-                unsigned unitFlags2 = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
-                NSDateComponents * deserializedDateComponents = [gregorian components:unitFlags2 fromDate:deserializedDate];
-                XCTAssertTrue([deserializedDateComponents year] == 2015);
-                XCTAssertTrue([deserializedDateComponents month] == 2);
-                XCTAssertTrue([deserializedDateComponents day] == 6);
-                XCTAssertTrue([deserializedDateComponents hour] == 3);
-                XCTAssertTrue([deserializedDateComponents minute] == 30);
-                XCTAssertTrue([deserializedDateComponents second] == 57);
+                [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                NSDateComponents * referenceDateComponents = [[NSDateComponents alloc]init];
+                referenceDateComponents.year = 2015;
+                referenceDateComponents.month = 2;
+                referenceDateComponents.day = 6;
+                referenceDateComponents.hour = 3;
+                referenceDateComponents.minute = 30;
+                referenceDateComponents.second = 57;
+                NSDate * referenceDate = [gregorian dateFromComponents:referenceDateComponents];
+                
+                unsigned unitFlags2 = NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay | NSCalendarUnitTimeZone;
+                
+                NSDate * deserializedDate = firstTweet.created_at;
+                 [gregorian components:unitFlags2 fromDate:deserializedDate];
+                XCTAssertEqualObjects(referenceDate, deserializedDate);
                 
                 // other (simpler) properties
                 XCTAssertTrue([firstTweet.id_str isEqualToString:@"563540322089566208"]);
@@ -366,7 +372,92 @@
         XCTAssertNotNil(duplicate);
         XCTAssertTrue([duplicate.screen_name isEqualToString:user.screen_name]);
     }
+}
 
+- (void) testArchivingImageAssociatedWithUser {
+    UIImage * image = [UIImage imageNamed:@"pUd0vvMB_reasonably_small.jpeg"];
+    XCTAssertNotNil(image);
+    NSDictionary * serializedUser = @{
+                                      @"name" : @"Tester Morris",
+                                      @"screen_name" : @"testerMorris123",
+                                      @"profile_image_url" : @"http://test.com/testerMorris_large.jpg"
+                                      };
+    
+    NSDictionary * serialzedTweet1 = @{
+                                       @"id_str" : @"123456789",
+                                       @"created_at" : @"Fri Feb 06 03:30:57 +0000 2015",
+                                       @"user" : serializedUser
+                                       };
+    
+    NSDictionary * serialzedTweet2 = @{
+                                       @"id_str" : @"663456789",
+                                       @"created_at" : @"Fri Feb 06 14:57:18 +0000 2015",
+                                       @"user" : serializedUser
+                                       };
+    
+    NSManagedObjectContext * context = self.managedObjectContext;
+    NSEntityDescription * userEntityDescription = [NSEntityDescription entityForName:@"User"
+                                                              inManagedObjectContext:context];
+    NSFetchRequest *fetchUserRequest = [[NSFetchRequest alloc] init];
+    [fetchUserRequest setEntity:userEntityDescription];
+    [fetchUserRequest setFetchLimit:20];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"screen_name like \"testerMorris123\""];
+    [fetchUserRequest setPredicate:predicate];
+    NSError * userFetchError = nil;
+    
+    NSArray * matchingUsers = [context executeFetchRequest:fetchUserRequest error:&userFetchError];
+    XCTAssertNil(userFetchError);
+    XCTAssertTrue(matchingUsers.count == 0);
+    
+    // now add the tweets to the database and verify the user image
+    NSEntityDescription * tweetEntityDescription = [NSEntityDescription entityForName:@"Tweet"
+                                                               inManagedObjectContext:context];
+    Tweet * tweet1 = [[Tweet alloc]initWithEntity:tweetEntityDescription
+                   insertIntoManagedObjectContext:context];
+    [tweet1 setValuesForKeysWithDictionary:serialzedTweet1];
+    tweet1.user.profile_image = image;
+    
+    Tweet * tweet2 = [[Tweet alloc] initWithEntity:tweetEntityDescription
+                    insertIntoManagedObjectContext:context];
+    [tweet2 setValuesForKeysWithDictionary:serialzedTweet2];
+    tweet2.user.profile_image = image;
+    
+    NSError * saveTweetsError = nil;
+    [context save:&saveTweetsError];
+    XCTAssertNil(saveTweetsError);
+    
+    NSFetchRequest * fetchTweetsRequest = [[NSFetchRequest alloc]init];
+    [fetchTweetsRequest setEntity:tweetEntityDescription];
+    [fetchTweetsRequest setFetchLimit:20];
+    NSError * tweetFetchError = nil;
+    
+    NSArray * savedTweets = [context executeFetchRequest:fetchTweetsRequest error:&tweetFetchError];
+    XCTAssertNil(tweetFetchError);
+    XCTAssertTrue(savedTweets.count == 2);
+    
+    // we've checked the tweets. how about the users?
+    userFetchError = nil;
+    matchingUsers = [context executeFetchRequest:fetchUserRequest error:&userFetchError];
+    XCTAssertNil(userFetchError);
+    XCTAssertTrue(matchingUsers.count == 1);
+    
+    UIImage * image1 = tweet1.user.profile_image;
+    XCTAssertEqualObjects(image, image1);
+    
+    if (savedTweets.count > 1) {
+        Tweet * savedTweet1 = savedTweets[0];
+        Tweet * savedTweet2 = savedTweets[1];
+        
+        UIImage * savedImage1 = savedTweet1.user.profile_image;
+        UIImage * savedImage2 = savedTweet2.user.profile_image;
+        
+        XCTAssertEqualObjects(savedImage1, image);
+        XCTAssertEqualObjects(savedImage2, image);
+        
+        XCTAssertEqualObjects(savedTweet1.user, savedTweet2.user);
+        User * savedUser = matchingUsers.firstObject;
+        XCTAssertEqualObjects(savedUser, savedTweet1.user);
+    }
 }
 
 @end
