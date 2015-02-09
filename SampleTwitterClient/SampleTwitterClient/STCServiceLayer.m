@@ -244,29 +244,8 @@ static NSOperationQueue * requestOperationQueue;
         // normally, we would not save anything locally until after the API confirmed the new tweet
         BOOL apiCallSuccess = YES;
         if (apiCallSuccess) {
-            NSManagedObjectContext * context = [[STCDataManager sharedManager]managedObjectContext];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
-            
-            Tweet * managedModelObject = [[Tweet alloc]initWithEntity:entity insertIntoManagedObjectContext:context];
-            managedModelObject.created_at = [NSDate date];
-            managedModelObject.text = tweetText;
-            managedModelObject.favourite_count = @0;
-            
-            // Save the context.
-            NSError *error = nil;
-            if (![context save:&error]) {
-                err = [[NSError alloc]initWithDomain:error.domain
-                                                code:error.code
-                                            userInfo:error.userInfo];
-            }
-            else {
-                [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationNameNewTweetPosted object:nil];
-            }
+        
         }
-        
-        
-        
-
     }
     else {
         NSString * recoverySuggestion = [NSString stringWithFormat:@"Limit tweets to %i characters or less.", kMaxTwitterTextCharacterLength];

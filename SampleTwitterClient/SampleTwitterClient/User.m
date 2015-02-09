@@ -8,6 +8,9 @@
 
 #import "User.h"
 #import "Tweet.h"
+#import "STSNetworkEngine.h"
+#import "MKNetworkOperation.h"
+
 
 
 @implementation User
@@ -17,6 +20,7 @@
 @dynamic screen_name;
 @dynamic profile_image;
 @dynamic user_tweets;
+@synthesize networkOperation;
 
 
 #pragma mark - key value coding
@@ -24,14 +28,16 @@
 - (void) setProfile_image_url:(NSString *)value {
     static NSString * key = @"profile_image_url";
     
-    // if the url has changed, we need to remove the old image data
+    
     NSString * oldImagePath = self.profile_image_url;
     if ((nil != oldImagePath) && [oldImagePath isEqualToString:value]) {
         NSLog(@"the user thumnail image url has not changed");
         // do nothing to the image data or the image object
     }
     else {
+        // if the url has changed, we need to remove the old image data
         self.profile_image = nil;
+        [self downloadImageForImagePath:value];
     }
     
     [self willChangeValueForKey:key];
@@ -68,5 +74,29 @@
     
     return value;
 }
+
+- (void) dealloc {
+    [self.networkOperation cancel];
+    self.networkOperation = nil;
+}
+
+- (void) downloadImageForImagePath:(NSString*)imagePath; {
+    if (imagePath.length > 0) {
+        STSNetworkEngine * sharedEngine = [STSNetworkEngine sharedInstance];
+        NSURL * url = [NSURL URLWithString:imagePath];
+        self.networkOperation = [sharedEngine imageAtURL:url completionHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
+            if (![self isFault]) {
+                self.profile_image = fetchedImage;
+            }
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            if (![self isFault]) {
+                self.profile_image = nil;
+            }
+        }];
+        NSError * err = nil;
+        [self.managedObjectContext save:&err];
+    }
+}
+
 
 @end

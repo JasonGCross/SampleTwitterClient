@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 
 @class Tweet;
+@class MKNetworkOperation;
 
 @interface User : JGCBaseModel
 
@@ -20,6 +21,7 @@
 @property (nonatomic, retain) NSString * screen_name;
 @property (nonatomic, retain) UIImage* profile_image;
 @property (nonatomic, retain) NSSet * user_tweets;
+@property (strong, nonatomic) MKNetworkOperation * networkOperation;
 
 // expose for testing
 + (User*) matchingOrNewlyCreatedUserForSerializedUser:(NSDictionary*)serializedUser

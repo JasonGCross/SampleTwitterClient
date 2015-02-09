@@ -29,7 +29,8 @@
     NSBundle * bundleContainingXCDataModel = [NSBundle mainBundle];
     NSManagedObjectModel *mom = [NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:bundleContainingXCDataModel]];
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
-    XCTAssertTrue([psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil
+    XCTAssertTrue([psc addPersistentStoreWithType:NSInMemoryStoreType
+                                    configuration:nil
                                               URL:nil
                                           options:nil
                                             error:NULL] ? YES : NO, @"Should be able to add in-memory store");
@@ -40,6 +41,7 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    [self.managedObjectContext rollback];
     self.managedObjectContext = nil;
 }
 
@@ -330,10 +332,6 @@
 
     // now insert a new user and check the count
     User * user = [User matchingOrNewlyCreatedUserForSerializedUser:serializedUser managedObjectContext:context];
-    NSError * saveError;
-    [context save:&saveError];
-    XCTAssertNil(saveError);
-    
     matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
     XCTAssertNil(fetchError);
     if (nil == fetchError) {
@@ -345,10 +343,6 @@
 
     // repeating the "insert" should have no change on the number of users in the data base
     user = [User matchingOrNewlyCreatedUserForSerializedUser:serializedUser managedObjectContext:context];
-    saveError = nil;
-    [context save:&saveError];
-    XCTAssertNil(saveError);
-    
     matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
     XCTAssertNil(fetchError);
     if (nil == fetchError) {
@@ -360,10 +354,6 @@
 
     // once more for over-kill
     user = [User matchingOrNewlyCreatedUserForSerializedUser:serializedUser managedObjectContext:context];
-    saveError = nil;
-    [context save:&saveError];
-    XCTAssertNil(saveError);
-    
     matchingUsers = [context executeFetchRequest:fetchRequest error:&fetchError];
     XCTAssertNil(fetchError);
     if (nil == fetchError) {
@@ -421,10 +411,6 @@
                     insertIntoManagedObjectContext:context];
     [tweet2 setValuesForKeysWithDictionary:serialzedTweet2];
     tweet2.user.profile_image = image;
-    
-    NSError * saveTweetsError = nil;
-    [context save:&saveTweetsError];
-    XCTAssertNil(saveTweetsError);
     
     NSFetchRequest * fetchTweetsRequest = [[NSFetchRequest alloc]init];
     [fetchTweetsRequest setEntity:tweetEntityDescription];

@@ -10,7 +10,7 @@
 #import "JGCSmartTableViewCell.h"
 
 @class Tweet;
-@class MKNetworkOperation;
+
 
 @interface STCTableViewCell : JGCSmartTableViewCell
 
@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* tweetTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel* tweetRetweetCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel* tweetFavoritesCountLabel;
-@property (strong, nonatomic) MKNetworkOperation * networkOperation;
+
 
 - (void) bindToData:(Tweet*)tweetData;
 
