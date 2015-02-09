@@ -161,7 +161,7 @@ static NSOperationQueue * requestOperationQueue;
     return twitterRequest;
 }
 
-+ (void) fetchTweetsSinceDate:(NSDate*)date responseBlock:(TweetsResponseBlock)responseBlock; {
++ (void) fetchNewTweetsWithResponseBlock:(TweetsResponseBlock)responseBlock; {
 
     __block NSError * err = nil;
     

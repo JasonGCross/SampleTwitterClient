@@ -15,7 +15,7 @@
 @interface Tweet : JGCBaseModel
 
 @property (nonatomic, retain) NSDate * created_at;
-@property (nonatomic, retain) NSNumber * favourite_count;
+@property (nonatomic, retain) NSNumber * favorite_count;
 @property (nonatomic, retain) NSString * id_str;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSNumber * retweet_count;

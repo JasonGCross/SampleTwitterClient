@@ -34,7 +34,7 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Home Timeline" id="tQt-TN-PWz"/>
                     <connections>
                         <segue destination="SAV-4x-fXC" kind="presentation" identifier="MasterToPostTweetSegue" id="cVF-ch-RgG"/>
                     </connections>

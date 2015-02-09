@@ -15,7 +15,7 @@
 @implementation Tweet
 
 @dynamic created_at;
-@dynamic favourite_count;
+@dynamic favorite_count;
 @dynamic id_str;
 @dynamic text;
 @dynamic retweet_count;

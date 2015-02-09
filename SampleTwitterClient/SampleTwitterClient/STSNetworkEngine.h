@@ -9,5 +9,10 @@
 #import "MKNetworkEngine.h"
 
 @interface STSNetworkEngine : MKNetworkEngine
+
+/*!
+ The global singleton for making network calls via the queing and caching network engine
+ */
 + (STSNetworkEngine*) sharedInstance;
+
 @end

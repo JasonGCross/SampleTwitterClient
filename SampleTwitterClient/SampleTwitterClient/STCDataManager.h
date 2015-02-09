@@ -16,8 +16,14 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+/*!
+ The global singleton for accessing application data
+ */
 + (STCDataManager*) sharedManager;
+
+/*!
+ Saves data to persist on file. Deletes any undo stack.
+ */
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
 
 @end

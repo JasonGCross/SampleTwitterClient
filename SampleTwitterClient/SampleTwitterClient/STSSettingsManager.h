@@ -10,9 +10,15 @@
 
 @interface STSSettingsManager : NSObject
 
-
+/*!
+ The global singleton for accessing application settings which persist to disk.
+ */
 + (STSSettingsManager*) sharedInstance; 
 
+/*!
+ The saved identifier of the last tweet fetched during a previous call to the Twitter API.
+ @discussion this is needed to optimize API calls by not requesting previously-fetched tweets
+ */
 @property (nonatomic, strong) NSString * maximumTweetIdFromPreviousFetch;
 
 @end

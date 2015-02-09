@@ -302,7 +302,14 @@
                 // other (simpler) properties
                 XCTAssertTrue([firstTweet.id_str isEqualToString:@"563540322089566208"]);
                 XCTAssertTrue([firstTweet.text isEqualToString:@"RT @Kaibutsu: Hilarious! RT @ImTheQ: ROFLLLLL---&gt;  RT @rickburin: Probably the best thing on the internet. http://t.co/8dC8YIK5SP"]);
-                XCTAssertTrue([firstTweet.favourite_count isEqualToNumber:@0]);
+                XCTAssertTrue([firstTweet.favorite_count isEqualToNumber:@9]);
+                XCTAssertTrue([firstTweet.retweet_count isEqualToNumber:@12]);
+                
+                // user
+                User * user = firstTweet.user;
+                XCTAssertNotNil(user);
+                XCTAssertTrue([user.name isEqualToString:@"Bill Dudney"]);
+                XCTAssertTrue([user.screen_name isEqualToString:@"bdudney"]);
             }
         }
     }

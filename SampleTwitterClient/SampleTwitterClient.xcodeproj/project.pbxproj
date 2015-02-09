@@ -125,6 +125,7 @@
 		F6D641D41A87639700AD96EA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F6D641D61A87639700AD96EA /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		F6D641D71A87639700AD96EA /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		F6DDAA401A897A4D00953D5D /* SampleTwitterClientV03.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleTwitterClientV03.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -653,10 +654,11 @@
 		F683A0691A7AB58600977E6F /* SampleTwitterClient.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F6DDAA401A897A4D00953D5D /* SampleTwitterClientV03.xcdatamodel */,
 				F6D641A61A8724B600AD96EA /* SampleTwitterClientV02.xcdatamodel */,
 				F683A06A1A7AB58600977E6F /* SampleTwitterClient.xcdatamodel */,
 			);
-			currentVersion = F6D641A61A8724B600AD96EA /* SampleTwitterClientV02.xcdatamodel */;
+			currentVersion = F6DDAA401A897A4D00953D5D /* SampleTwitterClientV03.xcdatamodel */;
 			path = SampleTwitterClient.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

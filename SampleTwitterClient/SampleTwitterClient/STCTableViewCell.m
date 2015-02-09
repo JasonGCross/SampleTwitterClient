@@ -73,7 +73,7 @@ static NSDateFormatter * dateFormatter;
     NSString * retweetString = [tweetData.retweet_count stringValue];
     self.tweetRetweetCountLabel.text = retweetString;
     
-    NSString * favoriteString = [tweetData.favourite_count stringValue];
+    NSString * favoriteString = [tweetData.favorite_count stringValue];
     self.tweetFavoritesCountLabel.text = favoriteString;
 }
 
